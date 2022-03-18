@@ -1,6 +1,6 @@
 #include "Struct.h"
 #include "Student.h"
-#include fstream
+#include <fstream>
 #include <string>
 #include <iostream>
 #include <cstdlib>
