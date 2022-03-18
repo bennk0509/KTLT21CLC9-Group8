@@ -7,17 +7,17 @@ using namespace std;
 
 struct Date
 {
-	int date, month, year;
+	int day, month, year;
 };
 
 struct Student
 {
 	string ID;
 	string name;
-	Date birthday;
+	Date BOD;
 	string classname;
 	int gender = 0;
-	Student* sNext;
+	Student* studentNext;
 };
 
 struct Class
@@ -31,12 +31,12 @@ struct Semester
 	//semester data
 
 
-	Semester* sNext;
+	Semester* semesterNext;
 };
 
 struct Year
 {
-	char* YearName;
+	string YearName;
 	Year* yearNext;
 	Class* pClass;
 	Semester* pSemester;

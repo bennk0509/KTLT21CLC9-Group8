@@ -1,2 +1,5 @@
-﻿  main.cpp
+﻿  ImportStudentCSV.cpp
+C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\ImportStudentCSV.cpp(14,23): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  main.cpp
+  Generating Code...
   KTLTCLC9_Group8.vcxproj -> C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\x64\Debug\KTLTCLC9_Group8.exe

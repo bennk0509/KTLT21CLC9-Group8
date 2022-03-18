@@ -24,9 +24,9 @@ Student* inputStudent(ifstream& studentcsv)
 		count++;
 	}
 	pS->classname = s.substr(size - count - 2, count);
-	pS->birthday.date = stoi(s.substr(size - count - 5, 2));
-	pS->birthday.month = stoi(s.substr(size - count - 8, 2));
-	pS->birthday.year = stoi(s.substr(size - count - 13, 4));
+	pS->BOD.day = stoi(s.substr(size - count - 5, 2));
+	pS->BOD.month = stoi(s.substr(size - count - 8, 2));
+	pS->BOD.year = stoi(s.substr(size - count - 13, 4));
 	int k = count;
 	count = 0;
 	for (int i = size - k - 15; i > 0; i--)
@@ -48,7 +48,7 @@ bool existedCheck(Student* pStudent, Student* student)
 	{
 		if (pCur->ID == student->ID)
 			return false;
-		pCur = pCur->sNext;
+		pCur = pCur->studentNext;
 	}
 	return true;
 }
@@ -61,7 +61,7 @@ void importStudentCSV(Student*& pStudent, ifstream& studentcsv)
 		if (pStudent == nullptr)
 		{
 			pStudent = inputStudent(studentcsv);
-			pStudent->sNext = nullptr;
+			pStudent->studentNext = nullptr;
 			sCur = pStudent;
 		}
 		else
@@ -69,11 +69,11 @@ void importStudentCSV(Student*& pStudent, ifstream& studentcsv)
 			Student* check = inputStudent(studentcsv);
 			if (existedCheck(pStudent, check) == true)
 			{
-				sCur->sNext = check;
-				sCur = sCur->sNext;
-				sCur->sNext = nullptr;
+				sCur->studentNext = check;
+				sCur = sCur->studentNext;
+				sCur->studentNext = nullptr;
 			}
-			else sCur->sNext = nullptr;
+			else sCur->studentNext = nullptr;
 		}
 	}
 }
@@ -89,13 +89,13 @@ void exportStudent(Student* pStudent, fstream& fout)
 	}
 	while (pCur != nullptr)
 	{
-		fout << count++ << " | ";
-		fout << pCur->name << " | ";
-		fout << pCur->ID << " | ";
-		fout << pCur->birthday.year << "-" << pCur->birthday.month << "-" << pCur->birthday.date << " | ";
-		fout << pCur->classname << " | ";
-		fout << pCur->gender << " | " << endl;
-		pCur = pCur->sNext;
+		fout << count++ << ",";
+		fout << pCur->name << ",";
+		fout << pCur->ID << ",";
+		fout << pCur->BOD.year << "-" << pCur->BOD.month << "-" << pCur->BOD.day << ",";
+		fout << pCur->classname << ",";
+		fout << pCur->gender << "," << endl;
+		pCur = pCur->studentNext;
 	}
 		
 }
