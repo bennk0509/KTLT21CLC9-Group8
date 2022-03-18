@@ -14,10 +14,10 @@ struct Student
 {
 	string ID;
 	string name;
-	Date BOD;
+	Date DOB;
 	string classname;
 	int gender = 0;
-	Student* studentNext;
+	Student* studentNext=nullptr;
 };
 
 struct Class
