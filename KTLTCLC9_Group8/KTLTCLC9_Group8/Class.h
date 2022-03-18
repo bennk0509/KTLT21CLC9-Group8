@@ -9,7 +9,7 @@ using namespace std;
 Student* inputStudent(ifstream& studentcsv);
 void importStudentCSV(Student*& pStudent, ifstream& studentcsv);
 void exportStudent(Student* pStudent, fstream& fout);
-
+void CreateNewYear(Year *&pYear, char* yearname);
 
 
 #endif // ! _CLASS_H

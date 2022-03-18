@@ -36,8 +36,8 @@ struct Semester
 
 struct Year
 {
-	char* yearName;
-	Year* yNext;
+	char* YearName;
+	Year* yearNext;
 	Class* pClass;
 	Semester* pSemester;
 };
