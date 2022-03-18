@@ -4,6 +4,6 @@
 #include "Struct.h"
 
 void inputStudent(Student *&newStu) ;
-void addNewStudent(Student*& pStudent, char* yearName, char* className, Student *& newStu);
+void addNewStudent(Student*& pStudent, string yearName, string className, Student *& newStu);
 
 #endif // ! _STUDENT_H
