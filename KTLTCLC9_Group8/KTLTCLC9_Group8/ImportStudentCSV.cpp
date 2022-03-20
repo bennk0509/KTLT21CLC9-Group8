@@ -24,9 +24,9 @@ Student* inputStudent(ifstream& studentcsv)
 		count++;
 	}
 	pS->classname = s.substr(size - count - 2, count);
-	pS->BOD.day = stoi(s.substr(size - count - 5, 2));
-	pS->BOD.month = stoi(s.substr(size - count - 8, 2));
-	pS->BOD.year = stoi(s.substr(size - count - 13, 4));
+	pS->DOB.day = stoi(s.substr(size - count - 5, 2));
+	pS->DOB.month = stoi(s.substr(size - count - 8, 2));
+	pS->DOB.year = stoi(s.substr(size - count - 13, 4));
 	int k = count;
 	count = 0;
 	for (int i = size - k - 15; i > 0; i--)
@@ -92,7 +92,7 @@ void exportStudent(Student* pStudent, fstream& fout)
 		fout << count++ << ",";
 		fout << pCur->name << ",";
 		fout << pCur->ID << ",";
-		fout << pCur->BOD.year << "-" << pCur->BOD.month << "-" << pCur->BOD.day << ",";
+		fout << pCur->DOB.year << "-" << pCur->DOB.month << "-" << pCur->DOB.day << ",";
 		fout << pCur->classname << ",";
 		fout << pCur->gender << "," << endl;
 		pCur = pCur->studentNext;
