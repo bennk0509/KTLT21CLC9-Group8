@@ -4,12 +4,12 @@
 #include "Struct.h"
 using namespace std;
 
-void CreateNewYear(Year *&pYear, char* yearname)
+void CreateNewYear(Year *&pYear, string yearname)
 {
     Year *pCur=pYear;
     while(pCur!=nullptr)
     {
-        if(strcmp(pCur->YearName,yearname)==0) {
+        if(pCur->YearName.compare(yearname) == 0) {
             cout << "Failed to create a new year!"<<endl;
             cout << "The year has already existed!"<<endl;
             return;
