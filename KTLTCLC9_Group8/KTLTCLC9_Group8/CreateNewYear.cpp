@@ -2,6 +2,9 @@
 #include <fstream>
 #include <string.h>
 #include "Struct.h"
+#include <Windows.h>
+#include <direct.h>
+
 using namespace std;
 
 void CreateNewYear(Year *&pYear, string yearname)
@@ -16,8 +19,10 @@ void CreateNewYear(Year *&pYear, string yearname)
         }
         pCur=pCur->yearNext;
     }
+    string dirO("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearname);
+    int check = _mkdir(dirO.c_str());
     fstream output;
-    output.open("Year.txt",ios::out);
+    output.open("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\Year.txt",ios::out);
     pCur=pYear;
     if(pYear==nullptr)
     {

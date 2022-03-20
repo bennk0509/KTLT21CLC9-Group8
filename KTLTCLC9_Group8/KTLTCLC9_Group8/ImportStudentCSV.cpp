@@ -2,10 +2,11 @@
 #include <fstream>
 using namespace std;
 
+#include "Class.h"
 #include "Struct.h"
 
 
-Student* inputStudent(ifstream& studentcsv)
+Student* inputStudentCSV(ifstream& studentcsv)
 {
 	int count = 0;
 	Student *pS = new Student;
@@ -53,20 +54,21 @@ bool existedCheck(Student* pStudent, Student* student)
 	return true;
 }
 
-void importStudentCSV(Student*& pStudent, ifstream& studentcsv)
+void importStudentCSV(Student*& pStudent, ifstream& studentcsv, string yearname, string classname)
 {
+	string dirO = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearname + "\\" + classname + "\\Student.txt";
 	Student* sCur = pStudent;
 	while (studentcsv.peek() != EOF)
 	{
 		if (pStudent == nullptr)
 		{
-			pStudent = inputStudent(studentcsv);
+			pStudent = inputStudentCSV(studentcsv);
 			pStudent->studentNext = nullptr;
 			sCur = pStudent;
 		}
 		else
 		{
-			Student* check = inputStudent(studentcsv);
+			Student* check = inputStudentCSV(studentcsv);
 			if (existedCheck(pStudent, check) == true)
 			{
 				sCur->studentNext = check;
@@ -76,6 +78,8 @@ void importStudentCSV(Student*& pStudent, ifstream& studentcsv)
 			else sCur->studentNext = nullptr;
 		}
 	}
+	fstream fout(dirO, ios::app);
+	exportStudent(pStudent, fout);
 }
 
 void exportStudent(Student* pStudent, fstream& fout)

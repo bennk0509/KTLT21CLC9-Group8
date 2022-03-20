@@ -1,5 +1,5 @@
 #include "Struct.h"
-#include "Student.h"
+#include "Class.h"
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -38,7 +38,7 @@ void inputStudent(Student *&newStu)
 void addNewStudent(Student*& pStudent, string yearName, string className, Student *& newStu)
 {
     
-    string dirD="C:\\Github\\KTLTPJ\\KTLT21CLC9-Group8\\Data\\" + yearName + "\\" + className + "\\Student.txt";
+    string dirD="C:\\Github\\KTLTPJ\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\" + className + "\\Student.txt";
     fstream output;
     output.open(dirD, ios::out);
 

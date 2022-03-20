@@ -142,6 +142,7 @@
     <ClCompile Include="CreateNewYear.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ImportStudentCSV.cpp" />
+    <ClCompile Include="Student.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Class.h" />
