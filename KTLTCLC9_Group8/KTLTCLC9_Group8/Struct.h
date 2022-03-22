@@ -6,7 +6,12 @@
 #include <direct.h>
 using namespace std;
 
-
+struct dayPerformed {
+	string d1; // day
+	string d2;
+	string s1; // shift
+	string s2;
+};
 struct Date
 {
 	int day, month, year;
@@ -42,6 +47,28 @@ struct Year
 	Year* yearNext;
 	Class* pClass;
 	Semester* pSemester;
+};
+
+struct Course {
+	string id;
+	string name;
+	string lecturerName;
+	string sSemester;
+	int numberOfCredits;
+	int maxStudent;
+	dayPerformed date;
+	Student* pStudent = nullptr;
+	Course* courseNext = nullptr;
+	Scoreboard* pScoreboard = nullptr;
+};
+
+struct Scoreboard {
+	Student *stu;
+	float midterm;
+	float final;
+	float bonus;
+	float total;
+	Scoreboard *scoreboardNext = nullptr;
 };
 #endif // _STRUCT_H
 
