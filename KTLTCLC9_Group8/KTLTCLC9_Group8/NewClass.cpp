@@ -2,14 +2,15 @@
 #include <fstream>
 #include <string.h>
 #include "Class.h"
+#include "Struct.h"
 
 using namespace std;
 
-void createNewClass(Class*& pClass, string* yearName, string* ClassName, int add) {
+void createNewClass(Class*& pClass, string yearName, string ClassName, int add) {
 	Class* cur = pClass;
 
 	while (cur != nullptr) {
-		if (strcmp(cur -> ClassName, className) == 0) {
+		if (cur->className.compare(ClassName) == 0) {
 			cout << "Failed to create a new class!!\n";
 			cout << "The class you are about to create has already existed!!\n";
 			system("pause");
@@ -19,46 +20,36 @@ void createNewClass(Class*& pClass, string* yearName, string* ClassName, int add
 		cur = cur -> classNext;
 	}
 
-	char dirD[] = "C:\KTLT21CLC9-Group8\Data\\";
-	string c = "";
-	strcat(c, dirD);
-	strcat(c, yearName);
-	strcat(c, "\\Class.txt");
+	string dirD = "C:\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\";
 
 	ofstream fout;
 	if (add)
-		fout.open(c);
+		fout.open("C:\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\Class.txt");
 
 	cur = pClass;
 
 	if (pClass == nullptr) {
 		pClass = new Class;
-		pClass -> ClassName = className;
+		pClass -> className = ClassName;
 		if (add)
-			fout << pClass -> ClassName;
+			fout << pClass -> className;
 	}
 	else {
 		while (cur -> classNext != nullptr) {
 			if (add)
-				fout << cur -> ClassName << '\n';
+				fout << cur -> className << '\n';
 			cur = cur -> classNext;
 		}
 		if (add)
-			fout << cur -> ClassName << '\n';
+			fout << cur -> className << '\n';
 		cur -> classNext = new Class;
 		cur = cur -> classNext;
-		cur -> ClassName = className;
+		cur -> className = ClassName;
 		if (add)
-			fout << cur -> ClassName;
+			fout << cur -> className;
 	}
 	if (add)
 		fout.close();
-
-	string d = "";
-	strcat(d,  "mkdir ");
-	strcat(d, dirD);
-	strcat(d, yearName);
-	strcat(d, "\\");
-	strcat(d, className);
-	system(d);
+	dirD += ClassName;
+	int check = _mkdir(dirD.c_str());
 }

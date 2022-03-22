@@ -2,6 +2,8 @@
 #define _STRUCT_H
 
 #include <string>
+#include <Windows.h>
+#include <direct.h>
 using namespace std;
 
 
@@ -17,20 +19,20 @@ struct Student
 	Date DOB;
 	string classname;
 	int gender = 0;
-	Student* studentNext=nullptr;
+	Student* studentNext = nullptr;
 };
 
 struct Class
 {
 	string yearName, className;
-	Class* cNext;
+	Class* classNext;
 };
 
 struct Semester
 {
-	//semester data
-
-
+	Date startDate, endDate;
+	string yearName;
+	string semesterName;
 	Semester* semesterNext;
 };
 

@@ -139,13 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CreateNewSemester.cpp" />
     <ClCompile Include="CreateNewYear.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ImportStudentCSV.cpp" />
+    <ClCompile Include="NewClass.cpp" />
     <ClCompile Include="Student.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Class.h" />
+    <ClInclude Include="Course.h" />
     <ClInclude Include="Struct.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

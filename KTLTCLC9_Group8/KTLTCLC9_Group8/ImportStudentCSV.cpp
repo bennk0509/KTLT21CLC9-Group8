@@ -1,10 +1,9 @@
 #include <iostream>
 #include <fstream>
-using namespace std;
-
 #include "Class.h"
 #include "Struct.h"
 
+using namespace std;
 
 Student* inputStudentCSV(ifstream& studentcsv)
 {
