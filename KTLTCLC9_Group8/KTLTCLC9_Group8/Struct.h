@@ -2,6 +2,7 @@
 #define _STRUCT_H
 
 #include <string>
+#include <fstream>
 #include <Windows.h>
 #include <direct.h>
 using namespace std;
@@ -24,6 +25,8 @@ struct Student
 	Date DOB;
 	string classname;
 	int gender = 0;
+	bool coursesenrolled[4][7] = {};
+	Course* EnrolledCourses = nullptr;
 	Student* studentNext = nullptr;
 };
 
@@ -56,6 +59,7 @@ struct Course {
 	string sSemester;
 	int numberOfCredits;
 	int maxStudent;
+	int curStudentNum;
 	dayPerformed date;
 	Student* pStudent = nullptr;
 	Course* courseNext = nullptr;
