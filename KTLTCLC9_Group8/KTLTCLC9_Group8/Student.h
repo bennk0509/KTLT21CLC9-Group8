@@ -3,7 +3,6 @@
 
 #include "Struct.h"
 
-void inputStudent(Student *&newStu) ;
-void addNewStudent(Student*& pStudent, string yearName, string className, Student *& newStu);
+void EnrollCourse(Course*& pCourse, Student*& pStudent, string CourseID, string studentID, string yearName, string semesterName);
 
 #endif // ! _STUDENT_H
