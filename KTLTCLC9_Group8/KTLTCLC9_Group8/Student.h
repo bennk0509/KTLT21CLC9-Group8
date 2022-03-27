@@ -4,5 +4,5 @@
 #include "Struct.h"
 
 void EnrollCourse(Course*& pCourse, Student*& pStudent, string CourseID, string studentID, string yearName, string semesterName);
-
+void viewEnrollList(Course* pEnrollCourse, string semesterName);
 #endif // ! _STUDENT_H
