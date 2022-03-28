@@ -22,16 +22,13 @@ void updateCourseData(Course *head) //ham nay can dien file direction voi cach l
     Course *cur;
     for(cur=head; cur!=nullptr; cur=cur->courseNext)
     {
-        //Cho nay chua biet luu sao, doi xem task 3 luu cho thong nhat
-
-        // output<<cur->id<<",";
-        // output<<cur->name<<",";
-        // output<<cur->lecturerName<<",";
-        // output<<cur->sSemester<<",";
-        // output<<cur->numberOfCredits<<",";
-        // output<<cur->maxStudent<<",";
-        // output<<cur->date.d1<<"," <<cur->date.s1<<","<<cur->date.d2<<","<<cur->date.s2;
-        // output<<"\n";
+	    output << cur -> id << '\n';
+	    output << cur -> name << '\n';
+	    output << cur -> lecturerName << '\n';
+	    output << cur -> numberOfCredits << '\n';
+	    output << cur -> maxStudent << '\n';
+	    output << cur -> date.d1 << '\n' << cur->date.s1 << '\n';
+	    output << cur -> date.d2 << '\n' << cur->date.s2 << '\n';
     }
     output.close();
 }
