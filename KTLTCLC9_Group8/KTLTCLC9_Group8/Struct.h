@@ -33,7 +33,7 @@ struct Student
 struct Class
 {
 	string yearName, className;
-	Class* classNext;
+	Class* classNext=nullptr;
 };
 
 struct Semester
@@ -41,15 +41,15 @@ struct Semester
 	Date startDate, endDate;
 	string yearName;
 	string semesterName;
-	Semester* semesterNext;
+	Semester* semesterNext=nullptr;
 };
 
 struct Year
 {
 	string YearName;
-	Year* yearNext;
-	Class* pClass;
-	Semester* pSemester;
+	Year* yearNext=nullptr;
+	Class* pClass=nullptr;
+	Semester* pSemester=nullptr;
 };
 
 struct Course {
@@ -67,7 +67,7 @@ struct Course {
 };
 
 struct Scoreboard {
-	Student *stu;
+	Student *stu=nullptr;
 	float midterm;
 	float final;
 	float bonus;
