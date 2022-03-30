@@ -14,6 +14,7 @@ void ViewListCourse(Course *pCourse)
         cout << "Course ID: "<<pCur->id<<endl;
         cout << "Course Name: "<<pCur->name<<endl;
         cout << "Lecturer Name: "<<pCur->lecturerName<<endl;
+        cout << "Max Student: " << pCur->maxStudent << endl;
         cout << "Number of Credit: "<<pCur->numberOfCredits<<endl;
         cout << "Occur in: " << pCur -> date.d1 << " " << pCur -> date.s1 << " and " << pCur -> date.d2 << " " << pCur -> date.s2 << '\n';
         int count=0;

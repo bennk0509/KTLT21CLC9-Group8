@@ -7,15 +7,27 @@
 #include <direct.h>
 using namespace std;
 
-struct dayPerformed {
+struct dayPerformed;
+struct Date;
+struct Class;
+struct Semester;
+struct Year;
+struct Course;
+struct Scoreboard;
+
+struct dayPerformed 
+{
 	string d1; // day
 	string d2;
 	string s1; // shift
 	string s2;
 };
+
 struct Date
 {
-	int day, month, year;
+	int day = -1;
+	int month = -1;
+	int year = -1;
 };
 
 struct Student
@@ -34,14 +46,17 @@ struct Class
 {
 	string yearName, className;
 	Class* classNext=nullptr;
+	Student* pStudent = nullptr;
 };
 
 struct Semester
 {
 	Date startDate, endDate;
+	Date startReg, endReg;
 	string yearName;
 	string semesterName;
 	Semester* semesterNext=nullptr;
+	Course* pCourse = nullptr;
 };
 
 struct Year
@@ -52,7 +67,8 @@ struct Year
 	Semester* pSemester=nullptr;
 };
 
-struct Course {
+struct Course 
+{
 	string id;
 	string name;
 	string lecturerName;
@@ -66,7 +82,8 @@ struct Course {
 	Scoreboard* pScoreboard = nullptr;
 };
 
-struct Scoreboard {
+struct Scoreboard 
+{
 	Student *stu=nullptr;
 	float midterm;
 	float final;

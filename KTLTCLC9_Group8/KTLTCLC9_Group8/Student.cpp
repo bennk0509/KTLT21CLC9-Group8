@@ -10,18 +10,19 @@ void inputStudent(Student *&newStu)
 {
 
 	cout << "Enter student's ID: ";
-    cin.ignore(100, '\n');
-	getline(cin, newStu->ID);
 
+    cin >> newStu->ID;
 	cout << "Enter student's name: ";
     cin.ignore(1000, '\n');
-	getline( cin, newStu->name);
+    cin.clear();
+	getline(cin, newStu->name);
 
 	cout << "Enter student's date of birth(dd/mm/yyyy): ";
     string temp;
     int posOfSlash[2];
-    int i=0;
-    cin.ignore(1000, '\n');
+    int i=0;  
+    cin.ignore(1000,'\n');
+    cin.clear();
     getline(cin, temp);
     for(int k=0; k< temp.size(); k++)
     {

@@ -5,12 +5,14 @@
 
 using namespace std;
 
-bool LogIn(){
-	char ad[200] = "";
+bool LogIn(int input){
+	string account;
 	bool login = false;
 	bool StillLog = true;
-
-	strcat(ad, "C:\\Github\\KTLTCLC9_Group8\\Data\\Account.txt");
+	if (input == 1)
+		account = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\Account.txt";
+	else if (input == 2)
+		account = "C:\\Github\\KTLTCLC9_Group8\\Data\\Account.txt";
 	while(!login || StillLog) {
 		cout << "Do you want to log in?"<<endl;
 		cout << "0: No"<<endl;
@@ -27,24 +29,19 @@ bool LogIn(){
 		int x = respond[0] - '0';
 
 		delete[] respond;	
-		/*if (x != 0 && x != 1) {
-			cout << "Invalid, please try again\n\n";
-			continue;
-		}*/
-
 		if(x == 0){
 			StillLog = false;
 			break;
 		}
-		char Username[101]; char Password[101];
+		string Username,Password;
 		cout << "Please input Username: ";
 		cin >> Username;
 		cout << "Please input Password: ";
 		cin >> Password;
-		ifstream fin(ad);
-		char name[101], pass[101];
+		ifstream fin(account);
+		string name, pass;
 		while(fin >> name && fin >> pass){
-			if(strcmp(name,Username) == 0 && strcmp(pass, Password) == 0){
+			if(name.compare(Username) == 0 && pass.compare(Password) == 0) {
 				system("cls");
 				cout << "You have logged in!\n\n";
 				login = true;

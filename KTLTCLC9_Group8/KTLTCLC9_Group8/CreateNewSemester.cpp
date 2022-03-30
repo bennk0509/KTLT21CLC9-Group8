@@ -5,7 +5,7 @@
 using namespace std;
 
 
-void inputSemester(Semester* pSemester)
+void inputSemester(Semester* &pSemester, string semesterName, string yearName)
 {
 	pSemester = new Semester;
 	cout << "Semester start day: ";
@@ -21,12 +21,24 @@ void inputSemester(Semester* pSemester)
 	cin >> pSemester->endDate.month;
 	cout << "Semester end year: ";
 	cin >> pSemester->endDate.year;
+	pSemester->semesterName = semesterName;
+	pSemester->yearName = yearName;
 }
 
 
-bool CreateNewSemester(Semester* pSemester, string yearName, string semesterName)
+bool CreateNewSemester(Semester* &pSemester, string yearName, string semesterName, Semester* &curSemester, bool &semestercheck, char &sdefault)
 {
 	Semester* pCur = pSemester;
+	if (pSemester == nullptr && semesterName.compare("1") != 0)
+	{
+		cout << "Semester 1 is not exist. Please create Semester 1 first.\n";
+		return false;
+	}
+	else if (pSemester != nullptr && pSemester->semesterNext == nullptr && semesterName.compare("3") == 0)
+	{
+		cout << "Semester 2 is not exist. Please create Semester 2 first.\n";
+		return false;
+	}
 	while (pCur != nullptr)
 	{
 		if (pCur->semesterName.compare(semesterName) == 0)
@@ -41,12 +53,48 @@ bool CreateNewSemester(Semester* pSemester, string yearName, string semesterName
 	}
 	string dirO = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\Semester\\" + "Semester " + semesterName;
 	int check = _mkdir(dirO.c_str());
-	if (pCur == nullptr)
+	pCur = pSemester;
+	if (pSemester == nullptr)
 	{
-		inputSemester(pCur);
-		pCur->semesterNext = nullptr;
-		pCur = pCur->semesterNext;
+		inputSemester(pSemester, semesterName, yearName);
+		pSemester->semesterNext = nullptr;
+		pCur = pSemester;
+		do
+		{
+			cout << "Do you want to set this semester as your current semester? (y/n): ";
+			cin >> sdefault;
+			system("cls");
+
+		} while (sdefault != 'y' && sdefault != 'n');
+		if (sdefault == 'y')
+		{
+			curSemester = pCur;
+			semestercheck = true;
+		}
 	}
+	else
+	{
+		while (pCur->semesterNext != nullptr)
+		{
+			pCur = pCur->semesterNext;
+		}
+		inputSemester(pCur->semesterNext, semesterName,yearName);
+		pCur = pCur->semesterNext;
+		pCur->semesterNext = nullptr;
+		do
+		{
+			cout << "Do you want to set this semester as your current semester? (y/n): ";
+			cin >> sdefault;
+			system("cls");
+
+		} while (sdefault != 'y' && sdefault != 'n');
+		if (sdefault == 'y')
+		{
+			curSemester = pCur;
+			semestercheck = true;
+		}
+	}
+	
 	
 	pCur = pSemester;
 	fstream output;
@@ -54,8 +102,10 @@ bool CreateNewSemester(Semester* pSemester, string yearName, string semesterName
 	while (pCur != nullptr)
 	{
 		output << pCur->semesterName << endl;
-		output << pCur->startDate.day << "-" << pCur->startDate.month << "-" << pCur->startDate.year << endl;
-		output << pCur->endDate.day << "-" << pCur->endDate.month << "-" << pCur->endDate.year << endl;
+		output << pCur->startDate.day << " " << pCur->startDate.month << " " << pCur->startDate.year << endl;
+		output << pCur->endDate.day << " " << pCur->endDate.month << " " << pCur->endDate.year << endl;
+		pCur = pCur->semesterNext;
 	}
+	
 	return true;
 }

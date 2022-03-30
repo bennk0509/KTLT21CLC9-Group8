@@ -2,14 +2,14 @@
 #include <fstream>
 #include "string.h"
 #include "Course.h"
-#include "Header.h"
+#include "Struct.h"
 
 using namespace std;
 
 void addNewCourse(Course*& pCourse, string semesterName, string yearName, Course *& newCourse, int add) {
    	Course * pCur = pCourse;
    	while (pCur != nullptr) {
-   		if (strcmp(pCur -> id, newCourse -> id) == 0) {
+   		if (pCur->id.compare(newCourse->id) == 0) {
 			cout << "Failed to add a new course!!\n";
 			cout << "The course you are about to add has already existed!!\n";
 			system("pause");
@@ -18,25 +18,9 @@ void addNewCourse(Course*& pCourse, string semesterName, string yearName, Course
    		}
    		pCur = pCur -> courseNext;
    	}
-    char dirD[] = "C:\Data\YearName\Semester\SemesterName\\";
-    string c = "";
-    strcat(c, dirD);
-    strcat(c, yearName);
-    strcat(c, "\\Semester\\");
-    strcat(c, semesterName);
-
-	char mkdir[505] = "mkdir ";
-	strcat(mkdir, c);
-	strcat(mkdir, "\\");
-	strcat(mkdir, newCourse -> id);
-	system(mkdir);
-
-    strcat(c, "\\Course.txt");
-
-    ofstream fout;
-
-    if (add == 1)
-	    fout.open(c);
+    string dirD = "C:\\Data\\YearName\\Semester\\SemesterName\\";
+    string c = dirD + yearName + "\\Semester\\" + semesterName;
+ 
 
    	pCur = pCourse;
 
@@ -51,7 +35,11 @@ void addNewCourse(Course*& pCourse, string semesterName, string yearName, Course
         pCur -> courseNext = newCourse;
         pCur = pCur -> courseNext;
     }
-
+    _mkdir((c + "\\" + newCourse->id).c_str());
+    c += "\\Course.txt";
+    ofstream fout;
+    if (add == 1)
+        fout.open(c);
     if (add == 1) {
     	pCur = pCourse;
     	while (pCur != nullptr) {
@@ -67,5 +55,6 @@ void addNewCourse(Course*& pCourse, string semesterName, string yearName, Course
  	}
 
     if (add == 1)
-	    fout.close();
+        fout.close();
+  	   
 }

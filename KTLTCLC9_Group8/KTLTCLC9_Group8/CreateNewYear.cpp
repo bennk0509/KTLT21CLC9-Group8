@@ -19,6 +19,7 @@ void CreateNewYear(Year *&pYear, string yearname)
         }
         pCur=pCur->yearNext;
     }
+    _mkdir("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\");
     string dirO("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearname);
     int check = _mkdir(dirO.c_str());
     fstream output;
@@ -43,4 +44,5 @@ void CreateNewYear(Year *&pYear, string yearname)
         output << pCur->YearName;
     }
     output.close();
+    cout << "Create new year successfully\n";
 }

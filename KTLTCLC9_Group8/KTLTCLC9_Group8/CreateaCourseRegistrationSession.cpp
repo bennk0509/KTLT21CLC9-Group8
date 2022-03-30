@@ -7,14 +7,14 @@
 using namespace std;
 
 
-void CreateACourseRegistrationSession(Semester *pSemester,string SemesterName)
+void CreateCourseRegistrationSession(Semester *&pSemester, string yearName)
 {
-    if(pSemester->startDate.year!=1)
+    if(pSemester->startReg.year != - 1)
     {
         while(true)
         {
             cout << "There's already a course registration session in this semester."<<endl;
-            cout << "This course from: "<<pSemester->startDate.day<<'/'<<pSemester->startDate.month<<'/'<<pSemester->startDate.year<<"to"<<pSemester->endDate.day<<'/'<<pSemester->endDate.month<<'/'<<pSemester->endDate.year<<endl;
+            cout << "This course from: "<<pSemester->startReg.day<<'/'<<pSemester->startReg.month<<'/'<<pSemester->startReg.year<<"to"<<pSemester->endReg.day<<'/'<<pSemester->endReg.month<<'/'<<pSemester->endReg.year<<endl;
             cout << "Try again if you want? "<<endl;
             cout << "1: Yes"<<endl;
             cout << "0: No"<<endl;
@@ -35,13 +35,26 @@ void CreateACourseRegistrationSession(Semester *pSemester,string SemesterName)
         }
     }
     cout << ">>>>Please input start date of the registration session<<<<"<<endl;
-    cout << "Day: "; cin >>pSemester->startDate.day;
-    cout << "Month: "; cin >>pSemester->startDate.month;
-    cout << "Year: "; cin >>pSemester->startDate.year;
+    cout << "Day: "; cin >>pSemester->startReg.day;
+    cout << "Month: "; cin >>pSemester->startReg.month;
+    cout << "Year: "; cin >>pSemester->startReg.year;
     cout << ">>>>Please input end date of the registration session<<<<"<<endl;
-    cout << "Day: "; cin >>pSemester->endDate.day;
-    cout << "Month: "; cin >>pSemester->endDate.month;
-    cout << "Year: "; cin >>pSemester->endDate.year;
+    cout << "Day: "; cin >>pSemester->endReg.day;
+    cout << "Month: "; cin >>pSemester->endReg.month;
+    cout << "Year: "; cin >>pSemester->endReg.year;
     system("pause");
     system("cls");
+
+    string dir = "C:\\KTLTCLC9_Group8\\Data\\yearName\\" + yearName + "\\Semester\\Semester.txt";
+    ofstream fout(dir);
+    Semester* curSemester = pSemester;
+    while (curSemester != nullptr)
+    {
+        fout << curSemester->startDate.day << " " << curSemester->startDate.month << " " << curSemester->startDate.year << endl;
+        fout << curSemester->endDate.day << " " << curSemester->endDate.month << " " << curSemester->endDate.year << endl;
+        fout << curSemester->startReg.day << " " << curSemester->startReg.month << " " << curSemester->startReg.year << endl;
+        fout << curSemester->endReg.day << " " << curSemester->endReg.month << " " << curSemester->endReg.year << endl;
+        curSemester = curSemester->semesterNext;
+    }
+    cout << "Create new registration session successfully.\n";
 }

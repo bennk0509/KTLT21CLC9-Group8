@@ -10,8 +10,7 @@ void importStudentCSV(Student*& pStudent, ifstream& studentcsv, string yearname,
 void exportStudent(Student* pStudent, fstream& fout);
 void addNewStudent(Student*& pStudent, string yearName, string className, Student*& newStu);
 void inputStudent(Student*& newStu);
-void CreateNewYear(Year *&pYear, string yearname);
-
+void createNewClass(Class*& pClass, string yearName, string ClassName, int add);
 
 
 #endif // ! _CLASS_H

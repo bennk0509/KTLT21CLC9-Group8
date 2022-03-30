@@ -140,19 +140,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AddCourse.cpp" />
+    <ClCompile Include="CreateaCourseRegistrationSession.cpp" />
     <ClCompile Include="CreateNewSemester.cpp" />
     <ClCompile Include="CreateNewYear.cpp" />
+    <ClCompile Include="DeleteCourse.cpp" />
     <ClCompile Include="EnrollCourse.cpp" />
+    <ClCompile Include="LogIn.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ImportStudentCSV.cpp" />
+    <ClCompile Include="MenuFunction.cpp" />
     <ClCompile Include="NewClass.cpp" />
     <ClCompile Include="Student.cpp" />
+    <ClCompile Include="UpdateCourse.cpp" />
+    <ClCompile Include="ViewListCourse.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Class.h" />
     <ClInclude Include="Course.h" />
+    <ClInclude Include="Staff.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="Student.h" />
+    <ClInclude Include="System.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

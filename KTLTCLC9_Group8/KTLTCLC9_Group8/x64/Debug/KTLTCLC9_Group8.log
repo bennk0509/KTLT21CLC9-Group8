@@ -1,2 +1,4 @@
 ﻿  main.cpp
+C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\main.cpp(122,15): warning C4129: 'd': unrecognized character escape sequence
+C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\main.cpp(122,15): warning C4129: 's': unrecognized character escape sequence
   KTLTCLC9_Group8.vcxproj -> C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\x64\Debug\KTLTCLC9_Group8.exe
