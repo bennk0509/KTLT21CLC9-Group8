@@ -4,6 +4,8 @@ using namespace std;
 
 void EnrollCourse(Course* &pCourse, Student* &pStudent, string CourseID, string studentID, string yearName, string semesterName)
 {
+	if (pCourse == nullptr)
+		return;
 	Course* curCourse = pCourse;
 	while (curCourse != nullptr)
 	{
@@ -89,9 +91,10 @@ void EnrollCourse(Course* &pCourse, Student* &pStudent, string CourseID, string 
 	}
 	else
 	{
-		while (curEC != nullptr)
+		while (curEC->courseNext != nullptr)
 			curEC = curEC->courseNext;
-		curEC = new Course;
+		curEC->courseNext = new Course;
+		curEC = curEC->courseNext;
 		curEC->id = curCourse->id;
 		curEC->name = curCourse->name;
 		curEC->lecturerName = curCourse->lecturerName;
@@ -118,9 +121,10 @@ void EnrollCourse(Course* &pCourse, Student* &pStudent, string CourseID, string 
 	}
 	else
 	{
-		while (stuCourse != nullptr)
+		while (stuCourse->studentNext != nullptr)
 			stuCourse = stuCourse->studentNext;
-		stuCourse = new Student;
+		stuCourse->studentNext = new Student;
+		stuCourse = stuCourse->studentNext;
 		stuCourse->classname = curStudent->classname;
 		stuCourse->name = curStudent->name;
 		stuCourse->ID = curStudent->ID;

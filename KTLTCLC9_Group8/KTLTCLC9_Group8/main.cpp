@@ -4,6 +4,7 @@
 #include "Course.h"
 #include "Staff.h"
 #include "System.h"
+#include "Student.h"
 using namespace std;
 
 
@@ -11,9 +12,10 @@ using namespace std;
 int main()
 {
 	int add = 0;
-	string classname, courseID;
+	string classname, courseID, account;
 	string yearName, disk = "", semesterName;
 	Year* pYear = nullptr, *curYear = nullptr;
+	Student* curStudent = nullptr;
 	Semester* curSemester = nullptr;
 	string yearname = "";
 	int choice;
@@ -35,7 +37,7 @@ int main()
 			int choice2;
 			case 1:
 				system("cls");
-				login = LogIn(choice);
+				login = LogIn(choice,account);
 				while (login)
 				{
 					system("cls");
@@ -166,32 +168,59 @@ int main()
 						cont(contchar, login);
 						break;
 					case 9:
+						system("cls");
 						newCourse = new Course;
 						inputNewCourse(newCourse);
 						addNewCourse(curSemester->pCourse, curSemester->semesterName, curYear->YearName, newCourse, 1);
 						cont(contchar, login);
 						break;
 					case 10:
+						system("cls");
 						ViewListCourse(curSemester->pCourse);
 						cont(contchar, login);
 						break;
 					case 11:
+						system("cls");
 						cout << "Input course ID: ";
 						cin >> courseID;
 						updateCourse(curSemester->pCourse, courseID);
 						cont(contchar, login);
 						break;
 					case 12:
+						system("cls");
 						cout << "Input course ID: ";
 						cin >> courseID;
 						deleteCourse(curSemester->pCourse, courseID);
 						cont(contchar, login);
 						break;
+					case 13:
+
 					case 0:
 						login = false;
 						break;
 					}
 				}
+		case 2:
+			/*system("cls");
+			login = LogIn(choice,account);
+			if (login)
+				logStudent(account, cur)
+			while (login)
+			{
+				system("cls");
+				cout << "1.Enroll a course.\n";
+				cout << ">>>";
+				cin >> choice2;
+				switch (choice2)
+				{
+				case 1:
+					break;
+				case 2:
+					viewEnrollList()
+					break;
+				}
+			}*/
+
 		}
 	} while (choice != 0);
 	return 0;

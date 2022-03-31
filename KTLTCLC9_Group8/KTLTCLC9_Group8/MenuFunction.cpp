@@ -152,3 +152,17 @@ void inputNewCourse(Course*& newCourse)
 	cout << "Course max student: ";
 	cin >> newCourse->maxStudent;
 }
+
+//void logStudent(string account, Year* pYear, Student* &curStudent) // Not done yet
+//{
+//	Student* curStu = pClass->pStudent;
+//	while (curStu != nullptr)
+//	{
+//		if (curStu->ID.compare(account) == 0);
+//		{
+//			curStudent = curStu;
+//			break;
+//		}
+//		curStu = curStu->studentNext;
+//	}
+//}

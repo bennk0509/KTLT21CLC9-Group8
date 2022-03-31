@@ -152,6 +152,7 @@
     <ClCompile Include="NewClass.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="UpdateCourse.cpp" />
+    <ClCompile Include="viewEnrollList.cpp" />
     <ClCompile Include="ViewListCourse.cpp" />
   </ItemGroup>
   <ItemGroup>

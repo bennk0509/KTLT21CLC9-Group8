@@ -5,8 +5,8 @@
 
 using namespace std;
 
-bool LogIn(int input){
-	string account;
+bool LogIn(int input, string &account){
+	
 	bool login = false;
 	bool StillLog = true;
 	if (input == 1)
@@ -44,6 +44,7 @@ bool LogIn(int input){
 			if(name.compare(Username) == 0 && pass.compare(Password) == 0) {
 				system("cls");
 				cout << "You have logged in!\n\n";
+				account = Username;
 				login = true;
 				break;
 			}

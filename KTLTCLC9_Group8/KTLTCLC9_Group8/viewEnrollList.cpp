@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string.h>
-#include "Header.h"
+#include "Struct.h"
 #include "Student.h"
 
 using namespace std;
@@ -8,7 +8,7 @@ using namespace std;
 void viewEnrollList(Course* pEnrollCourse, string semesterName){
 	Course * pCur = pEnrollCourse;
 	while(pCur != nullptr){
-		if (strcmp(semesterName, pCur -> sSemester) == 0) {
+		if (semesterName.compare(pCur->sSemester) == 0) {
 		    cout << "Course ID: " << pCur -> id << '\n';
 		    cout << "Course Name: " << pCur -> name << '\n';
 		    cout << "Lecturer Name: " << pCur -> lecturerName << '\n';

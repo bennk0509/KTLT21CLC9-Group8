@@ -1,4 +1,20 @@
-﻿  main.cpp
-C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\main.cpp(122,15): warning C4129: 'd': unrecognized character escape sequence
-C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\main.cpp(122,15): warning C4129: 's': unrecognized character escape sequence
-  KTLTCLC9_Group8.vcxproj -> C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\x64\Debug\KTLTCLC9_Group8.exe
+﻿  AddCourse.cpp
+  CreateNewSemester.cpp
+  CreateNewYear.cpp
+  CreateaCourseRegistrationSession.cpp
+  DeleteCourse.cpp
+  EnrollCourse.cpp
+C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\EnrollCourse.cpp(130,103): warning C4834: discarding return value of function with 'nodiscard' attribute
+  ImportStudentCSV.cpp
+C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\ImportStudentCSV.cpp(14,23): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  LogIn.cpp
+  MenuFunction.cpp
+  NewClass.cpp
+  Student.cpp
+  UpdateCourse.cpp
+  ViewListCourse.cpp
+  main.cpp
+C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\main.cpp(125,15): warning C4129: 'd': unrecognized character escape sequence
+C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\main.cpp(125,15): warning C4129: 's': unrecognized character escape sequence
+C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\main.cpp(214,6): error C3861: 'EnrollCourse': identifier not found
+  Generating Code...
