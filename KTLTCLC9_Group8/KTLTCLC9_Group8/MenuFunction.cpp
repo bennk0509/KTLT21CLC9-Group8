@@ -153,16 +153,44 @@ void inputNewCourse(Course*& newCourse)
 	cin >> newCourse->maxStudent;
 }
 
-//void logStudent(string account, Year* pYear, Student* &curStudent) // Not done yet
-//{
-//	Student* curStu = pClass->pStudent;
-//	while (curStu != nullptr)
-//	{
-//		if (curStu->ID.compare(account) == 0);
-//		{
-//			curStudent = curStu;
-//			break;
-//		}
-//		curStu = curStu->studentNext;
-//	}
-//}
+bool logStudent(string account, Year* pYear, Student* &curStudent, Year* &currentYear)
+{
+	bool acccheck = false;
+	if (pYear == nullptr)
+	{
+		cout << "This account does not exist.\n";
+		return false;
+	}
+	Year* curYear = pYear;
+	while (curYear != nullptr)
+	{
+		if (curYear->YearName.substr(curYear->YearName.length() - 2, 2).compare(account.substr(0, 2)) == 0)
+		{
+			acccheck = true;
+			currentYear = curYear;
+			break;
+		}
+		curYear = curYear->yearNext;
+	}
+	if (!acccheck)
+	{
+		cout << "This account does not exist.\n";
+		return false;
+	}
+	Class* curClass = curYear->pClass;
+	while (curClass != nullptr)
+	{
+		Student* curStu = curClass->pStudent;
+		while (curStu != nullptr)
+		{
+			if (curStu->ID.compare(account) == 0)
+			{
+				curStudent = curStu;
+				break;
+			}
+			curStu = curStu->studentNext;
+		}
+		curClass = curClass->classNext;
+	}
+	return true;
+}

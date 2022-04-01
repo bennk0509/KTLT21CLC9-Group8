@@ -1,17 +1,47 @@
+#pragma warning(disable:4996)
 #include <iostream>
 #include "Struct.h"
+#include <ctime>
 using namespace std;
+#define _CRT_SECURE_NO_WARNINGS
 
-void EnrollCourse(Course* &pCourse, Student* &pStudent, string CourseID, string studentID, string yearName, string semesterName)
+void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, string yearName, Semester* pSemester)
 {
+	bool courseCheck = false;
+	time_t t = time(NULL);
+	tm* timePtr = localtime(&t);
+	if (timePtr->tm_year > pSemester->endDate.year || timePtr->tm_year < pSemester->startDate.year)
+	{
+		cout << "You cannot enroll at this moment. Please try again later.\n";
+		return;
+	}
+	if (timePtr->tm_mon > pSemester->endDate.month || timePtr->tm_mon < pSemester->startDate.month)
+	{
+		cout << "You cannot enroll at this moment. Please try again later.\n";
+		return;
+	}
+	if (timePtr->tm_mday > pSemester->endDate.day || timePtr->tm_mday < pSemester->startDate.day)
+	{
+		cout << "You cannot enroll at this moment. Please try again later.\n";
+		return;
+	}
 	if (pCourse == nullptr)
 		return;
 	Course* curCourse = pCourse;
 	while (curCourse != nullptr)
 	{
 		if (curCourse->id.compare(CourseID) == 0)
+		{
+			courseCheck = true;
 			break;
+		}
+			
 		curCourse = curCourse->courseNext;
+	}
+	if (!courseCheck)
+	{
+		cout << "This course ID does not exist.\n";
+		return;
 	}
 	int d1, d2, s1, s2;
 	if (curCourse->date.d1.compare("MON") == 0) d1 = 0;
@@ -41,20 +71,15 @@ void EnrollCourse(Course* &pCourse, Student* &pStudent, string CourseID, string 
 	else if (curCourse->date.s2.compare("3.30") == 0) s2 = 3;
 
 
-	Student* curStudent = pStudent;
-	while (curStudent != nullptr)
+	
+	if (curStudent->coursesenrolled[s1][d1] || curStudent->coursesenrolled[s2][d2])
 	{
-		if (curStudent->ID.compare(studentID) == 0)
-		{
-			if (curStudent->coursesenrolled[s1][d1] || curStudent->coursesenrolled[s2][d2])
-			{
-				cout << "The current course has sessions that are conflict with existing enrolled course sessions, cannot enrolled!\n\n";
-				return;
-			}
-		}
+		cout << "The current course has sessions that are conflict with existing enrolled course sessions, cannot enrolled!\n\n";
+		return;
 	}
+	
 	int count = 0;
-	Course* curEC = curStudent->EnrolledCourses;
+	Course* curEC = curStudent ->EnrolledCourses;
 	while (curEC != nullptr)
 	{
 		count++;

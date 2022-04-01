@@ -194,32 +194,46 @@ int main()
 						cont(contchar, login);
 						break;
 					case 13:
-
+						break;
 					case 0:
 						login = false;
 						break;
 					}
 				}
-		case 2:
-			/*system("cls");
+		case 2:							//Not done yet!
+			/*system("cls");   
 			login = LogIn(choice,account);
 			if (login)
-				logStudent(account, cur)
+			{
+				bool logcheck = logStudent(account, pYear, curStudent,curYear);
+				if (!logcheck)
+					login = false;
+			}
 			while (login)
 			{
 				system("cls");
-				cout << "1.Enroll a course.\n";
+				cout << "1. Choose semester.\n";
+				cout << "2. Enroll in a course.\n";
+				cout << "3. View list of enrolled courses.\n";
+				cout << "4. Remove course from the enrolled list.\n";
 				cout << ">>>";
 				cin >> choice2;
 				switch (choice2)
 				{
 				case 1:
+					changeSemester(curYear, curSemester, semesterName, semestercheck);
+					cont(contchar, login);
 					break;
 				case 2:
-					viewEnrollList()
+					system("cls");
+					EnrollCourse(curSemester->pCourse, curStudent, courseID,curYear->YearName,curSemester);
+					cont(contchar, login);
 					break;
+				case 3:
+					
+					break;*/
 				}
-			}*/
+			}
 
 		}
 	} while (choice != 0);

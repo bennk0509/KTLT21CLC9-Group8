@@ -12,7 +12,7 @@ bool LogIn(int input, string &account){
 	if (input == 1)
 		account = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\Account.txt";
 	else if (input == 2)
-		account = "C:\\Github\\KTLTCLC9_Group8\\Data\\Account.txt";
+		account = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\Account.txt";
 	while(!login || StillLog) {
 		cout << "Do you want to log in?"<<endl;
 		cout << "0: No"<<endl;
