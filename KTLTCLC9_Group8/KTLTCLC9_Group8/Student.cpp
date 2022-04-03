@@ -38,24 +38,20 @@ void inputStudent(Student *&newStu)
 	cin>>newStu->gender;
 }
 
-void addNewStudent(Student*& pStudent, string yearName, string className, Student *& newStu)
+void addNewStudent(Student*& pStudent, string yearName, string className, Student *& newStu, int k)
 {
     
     string dirD="C:\\Github\\KTLTPJ\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\" + className + "\\Student.txt";
     fstream output;
     output.open(dirD, ios::out);
 
-    if (pStudent == nullptr) 
-    {
-		pStudent = newStu;
-	}
+    if (pStudent == nullptr)
+        pStudent = newStu;
 	else 
     {
 		Student* pCur = pStudent;
 		while (pCur -> studentNext != nullptr) 
-        {
 			pCur = pCur -> studentNext;
-		}
 		pCur -> studentNext = newStu;
 	}
     Student* pCur = pStudent;

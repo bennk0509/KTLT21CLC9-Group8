@@ -1,4 +1,4 @@
-#include "Header.h"
+#include "Struct.h"
 #include "Course.h"
 #include "Staff.h"
 #include <string.h>
@@ -8,7 +8,7 @@ using namespace std;
 
 
 void viewListOfStudentsInClass(Year* pYear, string className) {
-	while (pYear) {
+	/*while (pYear) {
 		while (pYear->pClass) {
 			if (strcmp(pYear->pClass->ClassName, className) == 0) {
 				while (pYear->pClass->pStudent) {
@@ -20,7 +20,7 @@ void viewListOfStudentsInClass(Year* pYear, string className) {
 			pYear->pClass = pYear->pClass->classNext;
 		}
 		pYear = pYear->yearNext;
-	}
+	}*/
 }
 
 

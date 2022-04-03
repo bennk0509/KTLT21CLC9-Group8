@@ -10,17 +10,17 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 	bool courseCheck = false;
 	time_t t = time(NULL);
 	tm* timePtr = localtime(&t);
-	if (timePtr->tm_year > pSemester->endDate.year || timePtr->tm_year < pSemester->startDate.year)
+	if (timePtr->tm_year > pSemester->endReg.year || timePtr->tm_year < pSemester->startReg.year)
 	{
 		cout << "You cannot enroll at this moment. Please try again later.\n";
 		return;
 	}
-	if (timePtr->tm_mon > pSemester->endDate.month || timePtr->tm_mon < pSemester->startDate.month)
+	if (timePtr->tm_mon > pSemester->endReg.month || timePtr->tm_mon < pSemester->startReg.month)
 	{
 		cout << "You cannot enroll at this moment. Please try again later.\n";
 		return;
 	}
-	if (timePtr->tm_mday > pSemester->endDate.day || timePtr->tm_mday < pSemester->startDate.day)
+	if (timePtr->tm_mday > pSemester->endReg.day || timePtr->tm_mday < pSemester->startReg.day)
 	{
 		cout << "You cannot enroll at this moment. Please try again later.\n";
 		return;

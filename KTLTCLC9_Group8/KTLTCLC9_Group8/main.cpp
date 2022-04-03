@@ -50,13 +50,16 @@ int main()
 					cout << "3. Create classes\n";
 					cout << "4. Add student\n";
 					cout << "5. Add student using CSV\n";
-					cout << "6. Create a semester\n";
-					cout << "7. Choose semester\n";
-					cout << "8. Create course registration session\n";
-					cout << "9. Add a course.\n";
-					cout << "10. View the list of courses.\n";
-					cout << "11. Update course information.\n";
-					cout << "12. Delete a course.\n";
+					cout << "6. View list of classes.\n";
+					cout << "7. View list of students in a class.\n";
+					cout << "8. Create a semester\n";
+					cout << "9. Choose semester\n";
+					cout << "10. Create course registration session\n";
+					cout << "11. Add a course.\n";
+					cout << "12. View the list of courses.\n";
+					cout << "13. Update course information.\n";
+					cout << "14. Delete a course.\n";
+					cout << "15.\n";
 					cout << "0. Back\n";
 					do
 					{
@@ -66,7 +69,7 @@ int main()
 							cout << "You have to choose a year in order to use this function, please try 1 or 2.\n";
 						else if (!semestercheck && choice2 > 7 && yearcheck)
 							cout << "You have to choose a semester in order to use this function, please try 6 or 7.\n";
-					} while ((!yearcheck && choice2 > 2) || (!semestercheck && choice2 > 7 && yearcheck));
+					} while ((!yearcheck && choice2 > 2) || (!semestercheck && choice2 > 9 && yearcheck));
 					switch (choice2)
 					{
 					case 1:
@@ -90,7 +93,7 @@ int main()
 							
 							}
 						} while (yearname.length() != 4 || atoi(yearname.c_str()) == 0);
-						CreateNewYear(pYear, yearname);
+						CreateNewYear(pYear, yearname,1);
 						
 						cont(contchar, login);
 						break;
@@ -147,6 +150,12 @@ int main()
 						cont(contchar, login);
 						break;
 					case 6:
+						viewClassesList(curYear);
+						cont(contchar, login);
+						break;
+					case 7:
+						break;
+					case 8:
 						do
 						{
 							cout << "Input semester name (1,2 or 3): ";
@@ -159,82 +168,107 @@ int main()
 						CreateNewSemester(curYear->pSemester,curYear->YearName,semesterName,curSemester,semestercheck,sdefault);
 						cont(contchar, login);
 						break;
-					case 7:
+					case 9:
 						changeSemester(curYear, curSemester, semesterName, semestercheck);
 						cont(contchar, login);
 						break;
-					case 8:
+					case 10:
 						CreateCourseRegistrationSession(curSemester,curYear->YearName);
 						cont(contchar, login);
 						break;
-					case 9:
+					case 11:
 						system("cls");
 						newCourse = new Course;
 						inputNewCourse(newCourse);
 						addNewCourse(curSemester->pCourse, curSemester->semesterName, curYear->YearName, newCourse, 1);
 						cont(contchar, login);
 						break;
-					case 10:
+					case 12:
 						system("cls");
 						ViewListCourse(curSemester->pCourse);
 						cont(contchar, login);
 						break;
-					case 11:
+					case 13:
 						system("cls");
 						cout << "Input course ID: ";
 						cin >> courseID;
 						updateCourse(curSemester->pCourse, courseID);
 						cont(contchar, login);
 						break;
-					case 12:
+					case 14:
 						system("cls");
 						cout << "Input course ID: ";
 						cin >> courseID;
 						deleteCourse(curSemester->pCourse, courseID);
 						cont(contchar, login);
 						break;
-					case 13:
-						break;
+					
 					case 0:
 						login = false;
+						curYear = nullptr;
+						curSemester = nullptr;
+						semestercheck = false;
+						break;
+					default:
 						break;
 					}
 				}
-		case 2:							//Not done yet!
-			/*system("cls");   
-			login = LogIn(choice,account);
-			if (login)
-			{
-				bool logcheck = logStudent(account, pYear, curStudent,curYear);
-				if (!logcheck)
-					login = false;
-			}
-			while (login)
-			{
-				system("cls");
-				cout << "1. Choose semester.\n";
-				cout << "2. Enroll in a course.\n";
-				cout << "3. View list of enrolled courses.\n";
-				cout << "4. Remove course from the enrolled list.\n";
-				cout << ">>>";
-				cin >> choice2;
-				switch (choice2)
+				break;
+			case 2:							//Not done yet!
+				system("cls");   
+				login = LogIn(choice,account);
+				if (login)
 				{
-				case 1:
-					changeSemester(curYear, curSemester, semesterName, semestercheck);
-					cont(contchar, login);
-					break;
-				case 2:
-					system("cls");
-					EnrollCourse(curSemester->pCourse, curStudent, courseID,curYear->YearName,curSemester);
-					cont(contchar, login);
-					break;
-				case 3:
-					
-					break;*/
+					bool logcheck = logStudent(account, pYear, curStudent,curYear);
+					if (!logcheck)
+						login = false;
 				}
-			}
-
+				while (login)
+				{
+					system("cls");
+					if (semestercheck)
+						cout << "***Semester: " << curSemester->semesterName << endl;
+					cout << "1. Choose semester.\n";
+					cout << "2. Enroll in a course.\n";
+					cout << "3. View list of enrolled courses.\n";
+					cout << "4. Remove course from the enrolled list.\n";
+					cout << "0. Back.\n";
+					do
+					{
+						cout << ">>> ";
+						cin >> choice2;
+						if (!semestercheck && choice2 > 1)
+							cout << "You have to choose a semester in order to use this function\n";
+					} while (!semestercheck && choice2 > 1);
+					switch (choice2)
+					{
+					case 1:
+						changeSemester(curYear, curSemester, semesterName, semestercheck);
+						cont(contchar, login);
+						break;
+					case 2:
+						system("cls");
+						EnrollCourse(curSemester->pCourse, curStudent, courseID,curYear->YearName,curSemester);
+						cont(contchar, login);
+						break;
+					case 3:
+						system("cls");
+						viewEnrollList(curStudent->EnrolledCourses, curSemester->semesterName);
+						cont(contchar, login);
+						break;
+					case 4:
+						system("cls");
+						cout << "Enter course ID: ";
+						cin >> courseID;
+						removeEnrolledCourse(curStudent->EnrolledCourses, courseID, curSemester);	
+					case 0:
+						login = false;
+						curYear = nullptr;
+						curSemester = nullptr;
+						semestercheck = false;
+						break;
+					}
+				}
 		}
 	} while (choice != 0);
 	return 0;

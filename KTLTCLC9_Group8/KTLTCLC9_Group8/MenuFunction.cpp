@@ -1,5 +1,10 @@
 #include <iostream>
 #include "Struct.h"
+#include "Class.h"
+#include "Course.h"
+#include "Staff.h"
+#include "System.h"
+#include "Student.h"
 using namespace std;
 
 void cont(char& contchar, bool& login)
@@ -111,24 +116,71 @@ void changeSemester(Year* pYear, Semester*& curSemester, string& semesterName, b
 		cout << "This semester is not exist.";
 }
 
-//void loadData(Year*& pYear, ifstream &yearin)			Not Done Yet!
+//void loadData(Year*& pYear, ifstream &yearin)		
 //{
-//	string cdir = "";
 //	Year* curYear = pYear;
 //	while (yearin.peek() != EOF)
 //	{
-//		if (pYear == nullptr)
+//		string yearName;
+//		yearin >> yearName;
+//		CreateNewYear(pYear, yearName, 0);
+//		Year* curYear = pYear;
+//		while (curYear->YearName.compare(yearName) != 0) 
+//			curYear = curYear->yearNext;
+//		string classdir = "";
+//		ifstream classin(classdir);
+//		while (classin.peek() != EOF)
 //		{
-//			pYear = new Year;
-//			yearin >> pYear->YearName;
-//			cdir = "C:\\Data\\YearName\\" + pYear->YearName + "\\Class.txt";
-//			ifstream classin(cdir);
-//			while (classin.peek() != EOF)
+//			string className;
+//			classin >> className;
+//			createNewClass(curYear->pClass, curYear->YearName, className,0);
+//			Class* curClass = curYear->pClass;
+//			while (curClass->className.compare(className) != 0)
+//				curClass = curClass->classNext;
+//			string studentdir = "";
+//			ifstream studentin(studentdir);
+//			while (studentin.peek() != EOF)
 //			{
+//				int count = 0;
+//				Student* pS = new Student;
+//				string s;
+//				studentin.ignore(1000, '\n');
+//				getline(studentin, s);
+//				int size = s.length();
+//				if (s[1] != ',')
+//					pS->ID = s.substr(3, 8);
+//				else
+//					pS->ID = s.substr(2, 8);
+//				pS->gender = s[size - 1] - 48;
+//				for (int i = size - 3; i > 0; i--)
+//				{
+//					if (s[i] == ',')
+//						break;
+//					count++;
+//				}
+//				pS->classname = s.substr(size - count - 2, count);
+//				pS->DOB.day = stoi(s.substr(size - count - 5, 2));
+//				pS->DOB.month = stoi(s.substr(size - count - 8, 2));
+//				pS->DOB.year = stoi(s.substr(size - count - 13, 4));
+//				int k = count;
+//				count = 0;
+//				for (int i = size - k - 15; i > 0; i--)
+//				{
+//					if (s[i] == ',') break;
+//					count++;
+//				}
+//				if (s[1] != ',')
+//					pS->name = s.substr(12, count);
+//				else
+//					pS->name = s.substr(11, count);
+//				
 //
+//				
 //			}
+//
 //		}
 //	}
+//
 //}
 
 void inputNewCourse(Course*& newCourse)

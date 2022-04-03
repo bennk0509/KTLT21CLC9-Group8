@@ -150,10 +150,13 @@
     <ClCompile Include="ImportStudentCSV.cpp" />
     <ClCompile Include="MenuFunction.cpp" />
     <ClCompile Include="NewClass.cpp" />
+    <ClCompile Include="RemoveEnrolledCourse.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="UpdateCourse.cpp" />
+    <ClCompile Include="viewClassesList.cpp" />
     <ClCompile Include="viewEnrollList.cpp" />
     <ClCompile Include="ViewListCourse.cpp" />
+    <ClCompile Include="ViewListOfStudentInClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Class.h" />

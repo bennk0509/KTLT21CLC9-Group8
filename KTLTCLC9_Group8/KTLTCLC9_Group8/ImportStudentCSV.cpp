@@ -10,6 +10,7 @@ Student* inputStudentCSV(ifstream& studentcsv)
 	int count = 0;
 	Student *pS = new Student;
 	string s;
+	studentcsv.ignore(1000, '\n');
 	getline(studentcsv, s);
 	int size = s.length();
 	if (s[1] != ',')

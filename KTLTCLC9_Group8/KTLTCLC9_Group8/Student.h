@@ -5,6 +5,6 @@
 
 void EnrollCourse(Course*& pCourse, Student*& curStudent, string CourseID, string yearName, Semester* pSemester);
 void viewEnrollList(Course* pEnrollCourse, string semesterName);
-void removeEnrolledCourse(Course *&ELhead, string ID);
+void removeEnrolledCourse(Course*& ELhead, string ID, Semester* pSemester);
 
 #endif // ! _STUDENT_H_
