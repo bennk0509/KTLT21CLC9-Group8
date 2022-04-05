@@ -91,5 +91,5 @@ struct Scoreboard
 	float total;
 	Scoreboard *scoreboardNext = nullptr;
 };
-#endif // _STRUCT_H
+#endif // _STRUCT_H 
 
