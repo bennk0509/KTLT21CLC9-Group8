@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-void importScoreboard(Scoreboard *pScoreBoard, string courseID, Year* curYear, Semester* curSemester)
+void importScoreboard(string courseID, Year* curYear, Semester* &curSemester)
 {
     string scoreboardDir="";
     fstream scoreboardcsv;

@@ -20,11 +20,11 @@ void createNewClass(Class*& pClass, string yearName, string ClassName, int add) 
 		cur = cur -> classNext;
 	}
 
-	string dirD = "C:\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\";
+	string dirD = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\";
 
 	ofstream fout;
 	if (add)
-		fout.open("C:\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\Class.txt");
+		fout.open("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\Class.txt");
 
 	cur = pClass;
 

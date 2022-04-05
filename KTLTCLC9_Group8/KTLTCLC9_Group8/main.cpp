@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "Struct.h"
 #include "Class.h"
 #include "Course.h"
@@ -24,7 +25,8 @@ int main()
 	ifstream fin;
 	bool yearcheck = false, semestercheck = false;
 	char contchar,sdefault;
-	
+	ifstream yearin("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\Year.txt");
+	loadData(pYear, yearin);
 	do
 	{
 		system("cls");
@@ -102,7 +104,7 @@ int main()
 						add = 1;
 						cout << "Input class name: ";
 						cin >> classname;
-						createNewClass(curYear->pClass, yearName, classname, add);
+						createNewClass(curYear->pClass, curYear->YearName, classname, add);
 						cont(contchar, login);
 						break;
 					case 4:											//date of birth needs input 2 times
@@ -117,7 +119,7 @@ int main()
 						if (i->className.compare(classname) == 0)
 						{
 							inputStudent(newStu);
-							addNewStudent(i->pStudent, yearName, classname, newStu);
+							addNewStudent(i->pStudent, yearName, classname, newStu,1);
 							break;
 						}
 						else if (i->classNext == nullptr && i->className.compare(classname) != 0)
@@ -131,11 +133,14 @@ int main()
 						cout << ">>>>";
 						cin >> disk;
 						if (disk.compare("default") == 0)
-							disk = "";
+							disk = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\StudentCSV\\20CTT1_Student.csv";
 						fin.open(disk);
 						if (!fin)
 							cout << "Cannot open file.\n";
 						else
+						{
+							cout << "Enter class: ";
+							cin >> classname;
 							for (Class* i = curYear->pClass; i != nullptr; i = i->classNext)
 							{
 								if (i->className.compare(classname) == 0)
@@ -147,6 +152,8 @@ int main()
 								else if (i->classNext == nullptr && i->className.compare(classname) != 0)
 									cout << "Class is not exist.";
 							}
+						}
+							
 						cont(contchar, login);
 						break;
 					case 6:
@@ -202,7 +209,11 @@ int main()
 						deleteCourse(curSemester->pCourse, courseID);
 						cont(contchar, login);
 						break;
-					
+					case 15: // Chua Xong
+						system("cls");
+						importScoreboard(courseID, curYear, curSemester);
+						cont(contchar, login);
+						break;
 					case 0:
 						login = false;
 						curYear = nullptr;

@@ -19,39 +19,38 @@ void CreateNewYear(Year *&pYear, string yearname, int k)
         }
         pCur=pCur->yearNext;
     }
-    _mkdir("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\yearname\\");
-    string dirO("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\yearname\\" + yearname);
+
+    _mkdir("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\");
+    string dirO("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearname);
     int check = _mkdir(dirO.c_str());
     fstream output;
-    output.open("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\yearname\\Year.txt",ios::out);
+    if (k == 1)
+        output.open("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\Year.txt",ios::out);
     pCur=pYear;
-    if(pYear==nullptr)
-    {
-        pYear=new Year;
-        pYear->YearName=yearname;
-        output << pYear->YearName<<endl;
-    }
+ 
     if (pYear == nullptr) {
         pYear = new Year;
         pYear->YearName = yearname;
-        if (k)
+        pYear->yearNext = nullptr;
+        pCur = pYear;
+        if (k == 1);
             output << pYear->YearName;
     }
     else {
         while (pCur->yearNext != nullptr) {
-            if (k)
+            if (k == 1)
                 output << pCur->YearName << '\n';
             pCur = pCur->yearNext;
         }
-        if (k)
+        if (k == 1)
             output << pCur->YearName << '\n';
         pCur->yearNext = new Year;
         pCur = pCur->yearNext;
         pCur->YearName = yearname;
-        if (k)
+        if (k == 1)
             output << pCur->YearName;
     }
-    if (k)
+    if (k == 1)
         output.close();
     output.close();
     cout << "Create new year successfully\n";

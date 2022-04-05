@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "Struct.h"
 #include "Class.h"
 #include "Course.h"
@@ -116,72 +117,112 @@ void changeSemester(Year* pYear, Semester*& curSemester, string& semesterName, b
 		cout << "This semester is not exist.";
 }
 
-//void loadData(Year*& pYear, ifstream &yearin)		
-//{
-//	Year* curYear = pYear;
-//	while (yearin.peek() != EOF)
-//	{
-//		string yearName;
-//		yearin >> yearName;
-//		CreateNewYear(pYear, yearName, 0);
-//		Year* curYear = pYear;
-//		while (curYear->YearName.compare(yearName) != 0) 
-//			curYear = curYear->yearNext;
-//		string classdir = "";
-//		ifstream classin(classdir);
-//		while (classin.peek() != EOF)
-//		{
-//			string className;
-//			classin >> className;
-//			createNewClass(curYear->pClass, curYear->YearName, className,0);
-//			Class* curClass = curYear->pClass;
-//			while (curClass->className.compare(className) != 0)
-//				curClass = curClass->classNext;
-//			string studentdir = "";
-//			ifstream studentin(studentdir);
-//			while (studentin.peek() != EOF)
-//			{
-//				int count = 0;
-//				Student* pS = new Student;
-//				string s;
-//				studentin.ignore(1000, '\n');
-//				getline(studentin, s);
-//				int size = s.length();
-//				if (s[1] != ',')
-//					pS->ID = s.substr(3, 8);
-//				else
-//					pS->ID = s.substr(2, 8);
-//				pS->gender = s[size - 1] - 48;
-//				for (int i = size - 3; i > 0; i--)
-//				{
-//					if (s[i] == ',')
-//						break;
-//					count++;
-//				}
-//				pS->classname = s.substr(size - count - 2, count);
-//				pS->DOB.day = stoi(s.substr(size - count - 5, 2));
-//				pS->DOB.month = stoi(s.substr(size - count - 8, 2));
-//				pS->DOB.year = stoi(s.substr(size - count - 13, 4));
-//				int k = count;
-//				count = 0;
-//				for (int i = size - k - 15; i > 0; i--)
-//				{
-//					if (s[i] == ',') break;
-//					count++;
-//				}
-//				if (s[1] != ',')
-//					pS->name = s.substr(12, count);
-//				else
-//					pS->name = s.substr(11, count);
-//				
-//
-//				
-//			}
-//
-//		}
-//	}
-//
-//}
+void loadData(Year*& pYear, ifstream &yearin)		
+{
+	Year* curYear = pYear;
+	while (yearin.peek() != EOF)
+	{
+		string yearName;
+		yearin >> yearName;
+		CreateNewYear(pYear, yearName, 0);
+		Year* curYear = pYear;
+		while (curYear->YearName.compare(yearName) != 0)
+			curYear = curYear->yearNext;
+		string classdir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + curYear->YearName + "\\Class.txt";
+		ifstream classin(classdir);
+		while (classin.peek() != EOF)
+		{
+			string className;
+			classin >> className;
+			createNewClass(curYear->pClass, curYear->YearName, className, 0);
+			Class* curClass = curYear->pClass;
+			while (curClass->className.compare(className) != 0)
+				curClass = curClass->classNext;
+			string studentdir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + curYear->YearName + "\\" + curClass->className + "\\Student.txt";
+			ifstream studentin(studentdir);
+			//while (studentin.peek() != EOF)
+			//{
+			//	int count = 0;
+			//	Student* pS = new Student;
+			//	/*string s;
+			//	
+			//	getline(studentin, s);
+			//	int size = s.length();
+			//	if (s[1] != ',')
+			//		pS->ID = s.substr(3, 8);
+			//	else
+			//		pS->ID = s.substr(2, 8);
+			//	pS->gender = s[size - 1] - 48;
+			//	for (int i = size - 4; i > 0; i--)
+			//	{
+			//		if (s[i] == ',')
+			//			break;
+			//		count++;
+			//	}
+			//	pS->classname = s.substr(size - count - 2, count);
+			//	pS->DOB.day = stoi(s.substr(size - count - 5, 2));
+			//	pS->DOB.month = stoi(s.substr(size - count - 8, 2));
+			//	pS->DOB.year = stoi(s.substr(size - count - 13, 4));
+			//	int k = count;
+			//	count = 0;
+			//	for (int i = size - k - 15; i > 0; i--)
+			//	{
+			//		if (s[i] == ',') break;
+			//		count++;
+			//	}
+			//	if (s[1] != ',')
+			//		pS->name = s.substr(12, count);
+			//	else
+			//		pS->name = s.substr(11, count);*/
+
+			//	addNewStudent(curClass->pStudent, curYear->YearName, curClass->className, pS, 0);
+			//	Student* curStudent = curClass->pStudent;
+			//	while (curStudent->name.compare(pS->name) != 0)
+			//		curStudent = curStudent->studentNext;
+			//	
+			//}
+			//studentin.close();
+		}
+		classin.close();
+		string semdir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\Semester\\Semester.txt";
+		fstream semin;
+		Semester* newSem;
+		semin.open(semdir, ios::in);
+		while (!semin.eof())
+		{
+			newSem = new Semester;
+			Semester* curSemester = curYear->pSemester;
+			semin >> newSem->semesterName;
+			semin >> newSem->startDate.day;
+			semin >> newSem->startDate.month;
+			semin >> newSem->startDate.year;
+			semin >> newSem->endDate.day;
+			semin >> newSem->endDate.month;
+			semin >> newSem->endDate.year;
+			semin >> newSem->startReg.day;
+			semin >> newSem->startReg.month;
+			semin >> newSem->startReg.year;
+			semin >> newSem->endReg.day;
+			semin >> newSem->endReg.month;
+			semin >> newSem->endReg.year;
+			if (curYear->pSemester == nullptr)
+			{
+				curYear->pSemester = newSem;
+				curYear->pSemester->semesterNext = nullptr;
+				curSemester = curYear->pSemester;
+			}
+			else
+			{
+				while (curSemester->semesterNext != nullptr)
+					curSemester = curSemester->semesterNext;
+				curSemester->semesterNext = newSem;
+				curSemester = curSemester->semesterNext;
+				curSemester->semesterNext = nullptr;
+			}
+		}
+		semin.close();
+	}
+}
 
 void inputNewCourse(Course*& newCourse)
 {

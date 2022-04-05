@@ -50,6 +50,7 @@ void CreateCourseRegistrationSession(Semester *&pSemester, string yearName)
     Semester* curSemester = pSemester;
     while (curSemester != nullptr)
     {
+        fout << curSemester->semesterName << endl;
         fout << curSemester->startDate.day << " " << curSemester->startDate.month << " " << curSemester->startDate.year << endl;
         fout << curSemester->endDate.day << " " << curSemester->endDate.month << " " << curSemester->endDate.year << endl;
         fout << curSemester->startReg.day << " " << curSemester->startReg.month << " " << curSemester->startReg.year << endl;

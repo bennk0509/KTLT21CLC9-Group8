@@ -51,8 +51,10 @@ bool CreateNewSemester(Semester* &pSemester, string yearName, string semesterNam
 		}
 		pCur = pCur->semesterNext;
 	}
-	string dirO = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\Semester\\" + "Semester " + semesterName;
+	string dirO = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\Semester\\";
 	int check = _mkdir(dirO.c_str());
+	dirO += "Semester " + semesterName;
+	check = _mkdir(dirO.c_str());
 	pCur = pSemester;
 	if (pSemester == nullptr)
 	{
@@ -98,14 +100,16 @@ bool CreateNewSemester(Semester* &pSemester, string yearName, string semesterNam
 	
 	pCur = pSemester;
 	fstream output;
-    output.open("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\Semester\\Semester.txt",ios::out);
+	output.open("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\Semester\\Semester.txt", ios::out);
 	while (pCur != nullptr)
 	{
-		output << pCur->semesterName << endl;
-		output << pCur->startDate.day << " " << pCur->startDate.month << " " << pCur->startDate.year << endl;
-		output << pCur->endDate.day << " " << pCur->endDate.month << " " << pCur->endDate.year << endl;
+		cout << "\n";
+		output << pCur->semesterName << "\n";
+		output << pCur->startDate.day << " " << pCur->startDate.month << " " << pCur->startDate.year << "\n";
+		output << pCur->endDate.day << " " << pCur->endDate.month << " " << pCur->endDate.year << "\n";
+		output << pCur->startReg.day << " " << pCur->startReg.month << " " << pCur->startReg.year << "\n";
+		output << pCur->endReg.day << " " << pCur->endReg.month << " " << pCur->endReg.year << "\n";
 		pCur = pCur->semesterNext;
 	}
-	
 	return true;
 }

@@ -43,7 +43,8 @@ void addNewStudent(Student*& pStudent, string yearName, string className, Studen
     
     string dirD="C:\\Github\\KTLTPJ\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\" + className + "\\Student.txt";
     fstream output;
-    output.open(dirD, ios::out);
+    if (k == 1)
+        output.open(dirD, ios::out);
 
     if (pStudent == nullptr)
         pStudent = newStu;
@@ -56,10 +57,14 @@ void addNewStudent(Student*& pStudent, string yearName, string className, Studen
 	}
     Student* pCur = pStudent;
     pCur=pStudent;
-    while (pCur != nullptr) 
+    if (k == 1)
+    {
+        while (pCur != nullptr)
         {
-			output << pCur -> ID << ", " << pCur ->name << ", " << pCur -> DOB.year << "-" << pCur -> DOB.month << "-" << pCur -> DOB.day << ", " << pCur -> gender << '\n';
-            pCur=pCur->studentNext;
-		}
-    output.close();
+            output << pCur->ID << ", " << pCur->name << ", " << pCur->DOB.year << "-" << pCur->DOB.month << "-" << pCur->DOB.day << ", " << pCur->gender << '\n';
+            pCur = pCur->studentNext;
+        }
+        output.close();
+    }
+    
 }

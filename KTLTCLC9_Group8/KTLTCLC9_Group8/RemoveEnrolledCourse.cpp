@@ -1,3 +1,4 @@
+#pragma warning(disable:4996)
 #include "Struct.h"
 #include "Student.h"
 #include <iostream>

@@ -1,4 +1,4 @@
-#include "Header.h"
+#include "Struct.h"
 #include "Staff.h"
 #include <iostream>
 #include <fstream>
@@ -8,7 +8,7 @@
 using namespace std;
 
 void exportStudentToCsv(Student* pStuInCourse, string courseID) {
-	string dirD[] = "C:\Data/File_csv/Student.csv\\";
+	/*string dirD = "C:\\Data\\File_csv\\Student.csv\\";
 	string c;
 	strcat(c, dirD);
 	strcat(c, courseID);
@@ -27,5 +27,5 @@ void exportStudentToCsv(Student* pStuInCourse, string courseID) {
 		system("pause");
 		system("cls");
 	}
-	fout.close();
+	fout.close();*/
 }

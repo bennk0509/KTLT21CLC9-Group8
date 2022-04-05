@@ -68,17 +68,13 @@ void importStudentCSV(Student*& pStudent, ifstream& studentcsv, string yearname,
 		}
 		else
 		{
-			Student* check = inputStudentCSV(studentcsv);
-			if (existedCheck(pStudent, check) == true)
-			{
-				sCur->studentNext = check;
-				sCur = sCur->studentNext;
-				sCur->studentNext = nullptr;
-			}
-			else sCur->studentNext = nullptr;
+			sCur->studentNext = inputStudentCSV(studentcsv);
+			sCur = sCur->studentNext;
+			sCur->studentNext = nullptr;
+			
 		}
 	}
-	fstream fout(dirO, ios::app);
+	fstream fout(dirO, ios::out);
 	exportStudent(pStudent, fout);
 }
 

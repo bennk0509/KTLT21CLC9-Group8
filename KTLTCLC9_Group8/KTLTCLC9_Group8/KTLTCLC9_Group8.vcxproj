@@ -145,6 +145,8 @@
     <ClCompile Include="CreateNewYear.cpp" />
     <ClCompile Include="DeleteCourse.cpp" />
     <ClCompile Include="EnrollCourse.cpp" />
+    <ClCompile Include="ExportStudentListToCSV.cpp" />
+    <ClCompile Include="ImportScoreboard.cpp" />
     <ClCompile Include="LogIn.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ImportStudentCSV.cpp" />
