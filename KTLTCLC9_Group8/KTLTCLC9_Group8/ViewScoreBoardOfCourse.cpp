@@ -7,7 +7,7 @@ void ViewScoreBoardOfCourse(Course *pCourse,string courseID)
 {
     Scoreboard *pCur;
     pCur=pCourse->pScoreboard;
-    cout << setw(60)<<right<<"VIEW THE SCOREBOARD"<<endl;
+    cout << setw(60)<<right<<"VIEW THE SCOREBOARD OF COURSE"<<endl;
     cout << endl;
     cout <<setw(15)<<left<<"Name";
     cout <<setw(15)<<left<<"ID";
