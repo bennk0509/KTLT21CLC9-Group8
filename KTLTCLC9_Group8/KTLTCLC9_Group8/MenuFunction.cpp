@@ -138,50 +138,48 @@ void loadData(Year*& pYear, ifstream &yearin)
 			Class* curClass = curYear->pClass;
 			while (curClass->className.compare(className) != 0)
 				curClass = curClass->classNext;
-			string studentdir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + curYear->YearName + "\\" + curClass->className + "\\Student.txt";
+			string studentdir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\2021\\21CLC09\\Student.txt";
 			ifstream studentin(studentdir);
-			//while (studentin.peek() != EOF)
-			//{
-			//	int count = 0;
-			//	Student* pS = new Student;
-			//	/*string s;
-			//	
-			//	getline(studentin, s);
-			//	int size = s.length();
-			//	if (s[1] != ',')
-			//		pS->ID = s.substr(3, 8);
-			//	else
-			//		pS->ID = s.substr(2, 8);
-			//	pS->gender = s[size - 1] - 48;
-			//	for (int i = size - 4; i > 0; i--)
-			//	{
-			//		if (s[i] == ',')
-			//			break;
-			//		count++;
-			//	}
-			//	pS->classname = s.substr(size - count - 2, count);
-			//	pS->DOB.day = stoi(s.substr(size - count - 5, 2));
-			//	pS->DOB.month = stoi(s.substr(size - count - 8, 2));
-			//	pS->DOB.year = stoi(s.substr(size - count - 13, 4));
-			//	int k = count;
-			//	count = 0;
-			//	for (int i = size - k - 15; i > 0; i--)
-			//	{
-			//		if (s[i] == ',') break;
-			//		count++;
-			//	}
-			//	if (s[1] != ',')
-			//		pS->name = s.substr(12, count);
-			//	else
-			//		pS->name = s.substr(11, count);*/
+			string s;
+			while (getline(studentin,s))
+			{
+				int count = 0;
+				Student* pS = new Student;
+				int size = s.length();
+				if (s[1] != ',')
+					pS->ID = s.substr(3, 8);
+				else
+					pS->ID = s.substr(2, 8);
+				pS->gender = s[size - 1] - 48;
+				for (int i = size - 3; i > 0; i--)
+				{
+					if (s[i] == ',')
+						break;
+					count++;
+				}
+				pS->classname = s.substr(size - count - 2, count);
+				pS->DOB.day = stoi(s.substr(size - count - 5, 2));
+				pS->DOB.month = stoi(s.substr(size - count - 8, 2));
+				pS->DOB.year = stoi(s.substr(size - count - 13, 4));
+				int k = count;
+				count = 0;
+				for (int i = size - k - 15; i > 0; i--)
+				{
+					if (s[i] == ',') break;
+					count++;
+				}
+				if (s[1] != ',')
+					pS->name = s.substr(12, count);
+				else
+					pS->name = s.substr(11, count);
 
-			//	addNewStudent(curClass->pStudent, curYear->YearName, curClass->className, pS, 0);
-			//	Student* curStudent = curClass->pStudent;
-			//	while (curStudent->name.compare(pS->name) != 0)
-			//		curStudent = curStudent->studentNext;
-			//	
-			//}
-			//studentin.close();
+				addNewStudent(curClass->pStudent, curYear->YearName, curClass->className, pS, 0);
+				Student* curStudent = curClass->pStudent;
+				while (curStudent->name.compare(pS->name) != 0)
+					curStudent = curStudent->studentNext;
+				
+			}
+			studentin.close();
 		}
 		classin.close();
 		string semdir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\Semester\\Semester.txt";
@@ -218,6 +216,93 @@ void loadData(Year*& pYear, ifstream &yearin)
 				curSemester->semesterNext = newSem;
 				curSemester = curSemester->semesterNext;
 				curSemester->semesterNext = nullptr;
+			}
+			string coursedir = "Student.txt";
+			Course* newCourse ;
+			ifstream coursein(coursedir);
+			while (!coursein.eof() && coursein)
+			{
+				newCourse = new Course;
+				coursein >> newCourse->id;
+				getline(coursein, newCourse->name);
+				getline(coursein, newCourse->lecturerName);
+				coursein >> newCourse->sSemester;
+				coursein >> newCourse->numberOfCredits;
+				coursein >> newCourse->maxStudent;
+				coursein >> newCourse->curStudentNum;
+				coursein >> newCourse->date.d1;
+				coursein >> newCourse->date.d2;
+				coursein >> newCourse->date.s1;
+				coursein >> newCourse->date.s2;
+				Course* curCourse = curSemester->pCourse;
+				if (curSemester->pCourse == nullptr)
+				{
+					curSemester->pCourse = newCourse;
+					curSemester->pCourse->courseNext = nullptr;
+					curCourse = curSemester->pCourse;
+				}
+				else
+				{
+					while (curCourse->courseNext != nullptr)
+						curCourse = curCourse->courseNext;
+					curCourse->courseNext = newCourse;
+					curCourse = curCourse->courseNext;
+					curCourse-> courseNext = nullptr;
+				}
+				string cstudir = "";
+				ifstream cstuin(cstudir);
+				string cstudent;
+				Student* StInCourse;
+				while (getline(cstuin,cstudent))
+				{
+					int count = 0;
+					StInCourse = new Student;
+					int size = cstudent.length();
+					if (cstudent[1] != ',')
+						StInCourse->ID = cstudent.substr(3, 8);
+					else
+						StInCourse->ID = cstudent.substr(2, 8);
+					StInCourse->gender = cstudent[size - 1] - 48;
+					for (int i = size - 3; i > 0; i--)
+					{
+						if (cstudent[i] == ',')
+							break;
+						count++;
+					}
+					StInCourse->classname = cstudent.substr(size - count - 2, count);
+					StInCourse->DOB.day = stoi(cstudent.substr(size - count - 5, 2));
+					StInCourse->DOB.month = stoi(cstudent.substr(size - count - 8, 2));
+					StInCourse->DOB.year = stoi(cstudent.substr(size - count - 13, 4));
+					int k = count;
+					count = 0;
+					for (int i = size - k - 15; i > 0; i--)
+					{
+						if (cstudent[i] == ',') break;
+						count++;
+					}
+					if (cstudent[1] != ',')
+						StInCourse->name = cstudent.substr(12, count);
+					else
+						StInCourse->name = cstudent.substr(11, count);
+					Student* curStudent = curCourse->pStudent;
+					if (curCourse->pStudent == nullptr)
+					{
+						curCourse->pStudent = StInCourse;
+						curCourse->pStudent->studentNext = nullptr;
+						curStudent = curCourse->pStudent;
+					}
+					else
+					{
+						while (curCourse->pStudent != nullptr)
+							curStudent = curStudent->studentNext;
+						curStudent->studentNext = StInCourse;
+						curStudent = curStudent->studentNext;
+						curStudent->studentNext = nullptr;
+					}
+				}
+				cstuin.close();
+
+
 			}
 		}
 		semin.close();
@@ -259,17 +344,13 @@ bool logStudent(string account, Year* pYear, Student* &curStudent, Year* &curren
 	{
 		if (curYear->YearName.substr(curYear->YearName.length() - 2, 2).compare(account.substr(0, 2)) == 0)
 		{
-			acccheck = true;
+			
 			currentYear = curYear;
 			break;
 		}
 		curYear = curYear->yearNext;
 	}
-	if (!acccheck)
-	{
-		cout << "This account does not exist.\n";
-		return false;
-	}
+	
 	Class* curClass = curYear->pClass;
 	while (curClass != nullptr)
 	{
@@ -278,12 +359,19 @@ bool logStudent(string account, Year* pYear, Student* &curStudent, Year* &curren
 		{
 			if (curStu->ID.compare(account) == 0)
 			{
+				acccheck = true;
 				curStudent = curStu;
 				break;
 			}
 			curStu = curStu->studentNext;
 		}
 		curClass = curClass->classNext;
+	}
+	if (!acccheck)
+	{
+		cout << "This account does not exist.\n";
+		system("pause");
+		return false;
 	}
 	return true;
 }

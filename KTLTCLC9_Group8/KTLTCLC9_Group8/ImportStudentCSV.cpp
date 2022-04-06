@@ -10,7 +10,6 @@ Student* inputStudentCSV(ifstream& studentcsv)
 	int count = 0;
 	Student *pS = new Student;
 	string s;
-	studentcsv.ignore(1000, '\n');
 	getline(studentcsv, s);
 	int size = s.length();
 	if (s[1] != ',')
@@ -90,11 +89,21 @@ void exportStudent(Student* pStudent, fstream& fout)
 	while (pCur != nullptr)
 	{
 		fout << count++ << ",";
-		fout << pCur->name << ",";
 		fout << pCur->ID << ",";
-		fout << pCur->DOB.year << "-" << pCur->DOB.month << "-" << pCur->DOB.day << ",";
+		fout << pCur->name << ",";
+		fout << pCur->DOB.year << "-";
+		if (pCur->DOB.month < 10)
+			fout << "0" << pCur->DOB.month;
+		else
+			fout << pCur->DOB.month;
+		fout << "-";
+		if (pCur->DOB.day < 10)
+			fout << "0" << pCur->DOB.day;
+		else
+			fout << pCur->DOB.day;
+		fout << ",";
 		fout << pCur->classname << ",";
-		fout << pCur->gender << "," << endl;
+		fout << pCur->gender << endl;
 		pCur = pCur->studentNext;
 	}
 		

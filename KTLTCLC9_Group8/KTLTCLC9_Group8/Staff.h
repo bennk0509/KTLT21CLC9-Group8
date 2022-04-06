@@ -11,5 +11,6 @@ void ViewScoreBoardOfCourse(Course *pCourse,string courseID);
 void importScoreboard(string courseID, Year* curYear, Semester*& curSemester);
 Student* findStudent(Year* curYear, string stuID);
 void viewScoreBoardOfClass(Student * pStudent, Semester * pSemester);
+void viewListOfStudentsInClass(Year* pYear, string className);
 
 #endif // ! _STAFF_H

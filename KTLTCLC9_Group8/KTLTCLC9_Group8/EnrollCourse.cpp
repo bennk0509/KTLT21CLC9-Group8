@@ -8,23 +8,27 @@ using namespace std;
 void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, string yearName, Semester* pSemester)
 {
 	bool courseCheck = false;
+	bool yearcheck = false;
+	bool monthcheck = false;
 	time_t t = time(NULL);
 	tm* timePtr = localtime(&t);
-	if (timePtr->tm_year > pSemester->endReg.year || timePtr->tm_year < pSemester->startReg.year)
+	/*if ((1900 + timePtr->tm_year) > pSemester->endReg.year && (1900 + timePtr->tm_year) < pSemester->startReg.year)
+	{
+		cout << "You cannot enroll at this moment. Please try again later.\n";
+		yearcheck = true;
+		return;
+	}
+	if ((timePtr->tm_mon + 1) > pSemester->endReg.month && (timePtr->tm_mon + 1) < pSemester->startReg.month)
+	{
+		cout << "You cannot enroll at this moment. Please try again later.\n";
+		monthcheck = true;
+		return;
+	}
+	if ((timePtr->tm_mday > pSemester->endReg.day && timePtr->tm_mday < pSemester->startReg.day) && (!yearcheck && !monthcheck))
 	{
 		cout << "You cannot enroll at this moment. Please try again later.\n";
 		return;
-	}
-	if (timePtr->tm_mon > pSemester->endReg.month || timePtr->tm_mon < pSemester->startReg.month)
-	{
-		cout << "You cannot enroll at this moment. Please try again later.\n";
-		return;
-	}
-	if (timePtr->tm_mday > pSemester->endReg.day || timePtr->tm_mday < pSemester->startReg.day)
-	{
-		cout << "You cannot enroll at this moment. Please try again later.\n";
-		return;
-	}
+	}*/
 	if (pCourse == nullptr)
 		return;
 	Course* curCourse = pCourse;
