@@ -8,19 +8,26 @@ using namespace std;
 
 
 void viewListOfStudentsInClass(Year* pYear, string className) {
-	/*while (pYear) {
-		while (pYear->pClass) {
-			if (strcmp(pYear->pClass->ClassName, className) == 0) {
-				while (pYear->pClass->pStudent) {
-					viewStudentInfo(pYear->pClass->pStudent);
-					pYear->pClass->pStudent = pYear->pClass->pStudent->studentNext;
-				}
-				return;
-			}
-			pYear->pClass = pYear->pClass->classNext;
-		}
-		pYear = pYear->yearNext;
-	}*/
+	Class* curClass = pYear->pClass;
+	if (curClass == nullptr)
+	{
+		cout << "This class is not exist.\n";
+		return;
+	}
+		
+	while (curClass->className.compare(className) != 0)
+	{
+		curClass = curClass->classNext;
+	}
+
+	Student* curStu = curClass->pStudent;
+	while (curStu != nullptr)
+	{
+		cout << curStu->ID << endl;
+		curStu = curStu->studentNext;
+	}
+
+	
 }
 
 

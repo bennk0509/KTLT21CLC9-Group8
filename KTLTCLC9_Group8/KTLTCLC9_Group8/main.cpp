@@ -160,7 +160,9 @@ int main()
 						viewClassesList(curYear);
 						cont(contchar, login);
 						break;
-					case 7:
+					case 7:					//NOT DONE YET
+						viewListOfStudentsInClass(curYear, "21CLC09");
+						cont(contchar, login);
 						break;
 					case 8:
 						do

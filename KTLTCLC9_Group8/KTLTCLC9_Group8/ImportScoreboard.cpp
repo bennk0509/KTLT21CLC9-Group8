@@ -11,18 +11,18 @@ void importScoreboard(string courseID, Year* curYear, Semester* &curSemester)
     fstream scoreboardcsv;
     scoreboardcsv.open(scoreboardDir,ios::in);
     Course *curCourse=curSemester->pCourse;
-    while(curCourse->id!=courseID)
+    while(curCourse->id!=courseID) //go to course with course id
         curCourse=curCourse->courseNext;
     Scoreboard *curSB = curCourse->pScoreboard;
     string temp;
     // No, Student ID, Student Full Name, Total Mark, Final Mark, Midterm Mark, Other Mark. 
-    while(!scoreboardcsv.eof())
+    while(!scoreboardcsv.eof()) //get data line by line
     {
         scoreboardcsv.ignore(1000,'\n');
         Scoreboard *newSB= new Scoreboard;
         getline(scoreboardcsv,temp,',');
         getline(scoreboardcsv,temp,',');
-        if(findStudent(curYear,temp)==nullptr) 
+        if(findStudent(curYear,temp)==nullptr) //if studnent id doesnt exist, skip that info
         {
             getline(scoreboardcsv,temp,'\n');
             continue;
@@ -42,7 +42,7 @@ void importScoreboard(string courseID, Year* curYear, Semester* &curSemester)
     }
 }
 
-Student *findStudent(Year* curYear, string stuID)
+Student *findStudent(Year* curYear, string stuID) //find student with student id in curYear
 {
     Student *curStu;
     Class *curClass=curYear->pClass;

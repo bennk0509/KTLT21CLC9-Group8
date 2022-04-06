@@ -75,7 +75,7 @@ struct Course
 	string sSemester;
 	int numberOfCredits;
 	int maxStudent;
-	int curStudentNum;
+	int curStudentNum = 0;
 	dayPerformed date;
 	Student* pStudent = nullptr;
 	Course* courseNext = nullptr;
