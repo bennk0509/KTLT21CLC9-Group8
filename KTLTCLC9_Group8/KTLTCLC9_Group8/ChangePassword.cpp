@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-void ChangePassword()
+void ChangePassword(string username)
 {
     fstream input, output;
     string accDir="C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\Account.txt";
@@ -15,9 +15,7 @@ void ChangePassword()
         cout<<"Account file opening failed!";
         return;
     }
-    string username, password;
-    cout<<"Enter username: ";
-    cin>>username;
+    string password;
     cout<<"Enter password: ";
     cin>>password;
     Account *head=nullptr;
