@@ -91,5 +91,13 @@ struct Scoreboard
 	float total;
 	Scoreboard *scoreboardNext = nullptr;
 };
+
+struct Account
+{
+	string username;
+	string password;
+	Account *nextAcc=nullptr;
+};
+
 #endif // _STRUCT_H 
 
