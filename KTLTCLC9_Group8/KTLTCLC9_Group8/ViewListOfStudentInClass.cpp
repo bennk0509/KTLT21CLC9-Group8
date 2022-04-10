@@ -9,17 +9,17 @@ using namespace std;
 
 void viewListOfStudentsInClass(Year* pYear, string className) {
 	Class* curClass = pYear->pClass;
-	if (curClass == nullptr)
+	while (curClass != nullptr)
 	{
-		cout << "This class is not exist.\n";
-		return;
-	}
-		
-	while (curClass->className.compare(className) != 0)
-	{
+		if (curClass->className == className)
+			break;
 		curClass = curClass->classNext;
 	}
-
+	if (curClass == nullptr)
+	{
+		cout << "This class does not exist.\n";
+		return;
+	}
 	Student* curStu = curClass->pStudent;
 	while (curStu != nullptr)
 	{

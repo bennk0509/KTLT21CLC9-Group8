@@ -65,9 +65,17 @@ bool changeYear(Year*& pYear, string& yearname, Year* &curYear, bool &yearcheck)
 			}
 		}
 	}
-	if (!yearcheck && pYear != nullptr)\
+	if (curYear == nullptr)
 	{
 		cout << "This year is not exist.";
+		yearcheck = false;
+		return false;
+	}
+		
+	if (!yearcheck && pYear != nullptr)
+	{
+		cout << "This year is not exist.";
+		yearcheck = false;
 		return false;
 	}
 	return true;
@@ -113,8 +121,19 @@ void changeSemester(Year* pYear, Semester*& curSemester, string& semesterName, b
 			}
 		}
 	}
-	if (!semestercheck && pYear->pSemester != nullptr)
+	if (curSemester == nullptr)
+	{
 		cout << "This semester is not exist.";
+		semestercheck = false;
+		return;
+	}
+	if (!semestercheck && pYear->pSemester != nullptr)
+	{
+		cout << "This semester is not exist.";
+		semestercheck = false;
+		return;
+	}
+		
 }
 
 void loadData(Year*& pYear, ifstream &yearin)		
@@ -138,7 +157,7 @@ void loadData(Year*& pYear, ifstream &yearin)
 			Class* curClass = curYear->pClass;
 			while (curClass->className.compare(className) != 0)
 				curClass = curClass->classNext;
-			string studentdir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\2021\\21CLC09\\Student.txt";
+			string studentdir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + curYear->YearName + "\\" + curClass->className + "\\Student.txt";
 			ifstream studentin(studentdir);
 			string s;
 			while (getline(studentin,s))
@@ -177,7 +196,38 @@ void loadData(Year*& pYear, ifstream &yearin)
 				Student* curStudent = curClass->pStudent;
 				while (curStudent->name.compare(pS->name) != 0)
 					curStudent = curStudent->studentNext;
-				
+				string ecdir = "";
+				ifstream ecin(ecdir);
+				while (!ecin.eof() && ecin)
+				{
+					for (int i = 0; i < 4; i++)
+						for (int j = 0; j < 7; j++)
+							ecin >> curStudent->coursesenrolled[i][j];
+					Course* ECourse = new Course;
+					ecin >> ECourse->id;
+					ecin >> ECourse->name;
+					ecin >> ECourse->lecturerName;
+					ecin >> ECourse->sSemester;
+					ecin >> ECourse->numberOfCredits;
+					ecin >> ECourse->maxStudent;
+					ecin >> ECourse->curStudentNum;
+					ecin >> ECourse->date.d1 >> ECourse->date.d2 >> ECourse->date.s1 >> ECourse->date.s2;
+					Course* curECourse = curStudent->EnrolledCourses;
+					if (curStudent->EnrolledCourses == nullptr)
+					{
+						curStudent->EnrolledCourses = ECourse;
+						curECourse = curStudent->EnrolledCourses;
+					}
+						
+					else
+					{
+						while (curECourse->courseNext != nullptr)
+							curECourse = curECourse->courseNext;
+						curECourse->courseNext = ECourse;
+						curECourse = curECourse->courseNext;
+					}
+
+				}
 			}
 			studentin.close();
 		}
@@ -186,7 +236,7 @@ void loadData(Year*& pYear, ifstream &yearin)
 		fstream semin;
 		Semester* newSem;
 		semin.open(semdir, ios::in);
-		while (!semin.eof())
+		while (!semin.eof() && semin)
 		{
 			newSem = new Semester;
 			Semester* curSemester = curYear->pSemester;
@@ -253,7 +303,7 @@ void loadData(Year*& pYear, ifstream &yearin)
 				ifstream cstuin(cstudir);
 				string cstudent;
 				Student* StInCourse;
-				while (getline(cstuin,cstudent))
+				while (getline(cstuin,cstudent) && cstuin)
 				{
 					int count = 0;
 					StInCourse = new Student;
@@ -301,8 +351,46 @@ void loadData(Year*& pYear, ifstream &yearin)
 					}
 				}
 				cstuin.close();
-
-
+				string sbdir = "";
+				Scoreboard* newSB;
+				ifstream sbin(sbdir);
+				Scoreboard* curSB = curCourse->pScoreboard;
+				string temp;
+				while (!sbin.eof() && sbin)
+				{
+					newSB = new Scoreboard;
+					getline(sbin, temp, ',');
+					getline(sbin, temp, ',');
+					if (findStudent(curYear, temp) == nullptr) //if studnent id doesnt exist, skip that info
+					{
+						getline(sbin, temp, '\n');
+						continue;
+					}
+					newSB->stu = findStudent(curYear, temp);
+					getline(sbin, temp, ',');
+					getline(sbin, temp, ',');
+					newSB->total = stof(temp);
+					getline(sbin, temp, ',');
+					newSB->final = stof(temp);
+					getline(sbin, temp, ',');
+					newSB->midterm = stof(temp);
+					getline(sbin, temp, '\n');
+					newSB->bonus = stof(temp);
+					if (curCourse->pScoreboard == nullptr)
+					{
+						curCourse->pScoreboard = newSB;
+						curSB = curCourse->pScoreboard;
+					}
+					else
+					{
+						while (curSB->scoreboardNext != nullptr)
+							curSB = curSB->scoreboardNext;
+						curSB->scoreboardNext = newSB;
+						curSB = curSB->scoreboardNext;
+					}
+						
+					
+				}
 			}
 		}
 		semin.close();
@@ -349,6 +437,11 @@ bool logStudent(string account, Year* pYear, Student* &curStudent, Year* &curren
 			break;
 		}
 		curYear = curYear->yearNext;
+	}
+	if (curYear == nullptr)
+	{
+		cout << "This account does not exist.\n";
+		return false;
 	}
 	
 	Class* curClass = curYear->pClass;

@@ -83,7 +83,6 @@ int main()
 						cont(contchar, login);
 						break;
 					case 2:
-						
 						do
 						{
 							system("cls");
@@ -161,7 +160,9 @@ int main()
 						cont(contchar, login);
 						break;
 					case 7:					//NOT DONE YET
-						viewListOfStudentsInClass(curYear, "21CLC09");
+						cout << "Enter class: ";
+						cin >> classname;
+						viewListOfStudentsInClass(curYear, classname);
 						cont(contchar, login);
 						break;
 					case 8:

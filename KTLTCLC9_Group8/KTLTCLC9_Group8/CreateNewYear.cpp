@@ -33,7 +33,7 @@ void CreateNewYear(Year *&pYear, string yearname, int k)
         pYear->YearName = yearname;
         pYear->yearNext = nullptr;
         pCur = pYear;
-        if (k == 1);
+        if (k == 1)
             output << pYear->YearName;
     }
     else {

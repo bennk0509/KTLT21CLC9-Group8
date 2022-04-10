@@ -8,7 +8,7 @@ using namespace std;
 
 void removeEnrolledCourse(Course *&ELhead, string ID, Semester* pSemester)
 {
-    time_t t = time(NULL);
+    /*time_t t = time(NULL);
     tm* timePtr = localtime(&t);
     if (timePtr->tm_year > pSemester->endReg.year || timePtr->tm_year < pSemester->startReg.year)
     {
@@ -24,7 +24,7 @@ void removeEnrolledCourse(Course *&ELhead, string ID, Semester* pSemester)
     {
         cout << "You cannot enroll at this moment. Please try again later.\n";
         return;
-    }
+    }*/
     if(ELhead==nullptr) return;
     Course *cur=ELhead;
     if(ELhead->id==ID)
