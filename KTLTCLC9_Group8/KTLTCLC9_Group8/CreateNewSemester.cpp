@@ -29,16 +29,6 @@ void inputSemester(Semester* &pSemester, string semesterName, string yearName)
 bool CreateNewSemester(Semester* &pSemester, string yearName, string semesterName, Semester* &curSemester, bool &semestercheck, char &sdefault)
 {
 	Semester* pCur = pSemester;
-	if (pSemester == nullptr && semesterName.compare("1") != 0)
-	{
-		cout << "Semester 1 is not exist. Please create Semester 1 first.\n";
-		return false;
-	}
-	else if (pSemester != nullptr && pSemester->semesterNext == nullptr && semesterName.compare("3") == 0)
-	{
-		cout << "Semester 2 is not exist. Please create Semester 2 first.\n";
-		return false;
-	}
 	while (pCur != nullptr)
 	{
 		if (pCur->semesterName.compare(semesterName) == 0)

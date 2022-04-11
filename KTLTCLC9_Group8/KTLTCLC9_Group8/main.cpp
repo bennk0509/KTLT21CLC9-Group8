@@ -20,6 +20,7 @@ int main()
 	Semester* curSemester = nullptr;
 	string yearname = "";
 	int choice;
+	string studentID;
 	Student* newStu = nullptr;
 	Course* newCourse = nullptr;
 	ifstream fin;
@@ -61,7 +62,9 @@ int main()
 					cout << "12. View the list of courses.\n";
 					cout << "13. Update course information.\n";
 					cout << "14. Delete a course.\n";
-					cout << "15.\n";
+					cout << "15. Import scoreboard.\n";
+					cout << "16. View scoreboard of a course\n";
+					cout << "17. Export student list to .csv file.\n";
 					cout << "0. Back\n";
 					do
 					{
@@ -91,11 +94,9 @@ int main()
 							if (yearname.length() != 4 || atoi(yearname.c_str()) == 0)
 							{
 								cout << "Format is not correct, please try again";
-							
 							}
 						} while (yearname.length() != 4 || atoi(yearname.c_str()) == 0);
 						CreateNewYear(pYear, yearname,1);
-						
 						cont(contchar, login);
 						break;
 					
@@ -106,13 +107,12 @@ int main()
 						createNewClass(curYear->pClass, curYear->YearName, classname, add);
 						cont(contchar, login);
 						break;
-					case 4:											//date of birth needs input 2 times
-					system("cls");
+					case 4:											
 					newStu = new Student;
 					cout << "Input class name: ";
 					cin >> classname;
 					if (curYear->pClass == nullptr)
-						cout << "Class is not exist.";
+						cout << "Class does not exist.";
 					for (Class* i = curYear->pClass; i != nullptr; i = i->classNext)
 					{
 						if (i->className.compare(classname) == 0)
@@ -122,24 +122,24 @@ int main()
 							break;
 						}
 						else if (i->classNext == nullptr && i->className.compare(classname) != 0)
-							cout << "Class is not exist.";
+							cout << "Class does not exist.";
 					}
 					
 					cont(contchar, login);
 						break;
 					case 5:
-						cout << "Input file's directorty (example: C:\\\data\\\student.csv) or input 'default' to choose default path\n";
+						cout << "Enter class: ";
+						cin >> classname;
+						cout << "Input file's directorty (example: C:\\\\data\\\\student.csv) or input 'default' to choose default path\n";
 						cout << ">>>>";
 						cin >> disk;
 						if (disk.compare("default") == 0)
-							disk = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\StudentCSV\\20CTT1_Student.csv";
+							disk = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\StudentCSV\\" + classname + "_Student.scv";
 						fin.open(disk);
 						if (!fin)
 							cout << "Cannot open file.\n";
 						else
 						{
-							cout << "Enter class: ";
-							cin >> classname;
 							for (Class* i = curYear->pClass; i != nullptr; i = i->classNext)
 							{
 								if (i->className.compare(classname) == 0)
@@ -152,14 +152,13 @@ int main()
 									cout << "Class is not exist.";
 							}
 						}
-							
 						cont(contchar, login);
 						break;
 					case 6:
 						viewClassesList(curYear);
 						cont(contchar, login);
 						break;
-					case 7:					//NOT DONE YET
+					case 7:				
 						cout << "Enter class: ";
 						cin >> classname;
 						viewListOfStudentsInClass(curYear, classname);
@@ -168,13 +167,13 @@ int main()
 					case 8:
 						do
 						{
-							cout << "Input semester name (1,2 or 3): ";
+							cout << "Input semester(from 1 to 12(3 semester each year)): ";
 							cin >> semesterName;
-							if (semesterName != "1" && semesterName != "2" && semesterName != "3")
+							if (stoi(semesterName) < 1|| stoi(semesterName) > 12)
 							{
 								cout << "Incorrect input, please try again\n";
 							}
-						} while (semesterName != "1" && semesterName != "2" && semesterName != "3");
+						} while (stoi(semesterName) < 1 || stoi(semesterName) > 12);
 						CreateNewSemester(curYear->pSemester,curYear->YearName,semesterName,curSemester,semestercheck,sdefault);
 						cont(contchar, login);
 						break;
@@ -217,6 +216,62 @@ int main()
 						importScoreboard(courseID, curYear, curSemester);
 						cont(contchar, login);
 						break;
+					case 16:
+						system("cls");
+						cout << "Enter course ID: ";
+						cin >> courseID;
+						ViewScoreBoardOfCourse(curSemester->pCourse, courseID);
+						cont(contchar, login);
+						break;
+					case 17:
+						system("cls");
+						cout << "Enter course ID: ";
+						cin >> courseID;
+						for (Course* i = curSemester->pCourse; i != nullptr; i = i->courseNext)
+						{
+							if (i->id.compare(courseID) == 0)
+							{
+								exportStudentToCsv(i->pStudent, courseID);
+								break;
+							}
+							else if (i->courseNext == nullptr && i->id.compare(courseID) != 0)
+								cout << "This course ID does not exist.";
+						}
+						cont(contchar, login);
+						break;
+					case 18:
+						system("cls");
+						cout << "Enter course ID: ";
+						cin >> courseID;
+						cout << "Enter student ID: ";
+						cin >> studentID;
+						for (Course* i = curSemester->pCourse; i != nullptr; i = i->courseNext)
+						{
+							if (i->id.compare(courseID) == 0)
+							{
+								UpdateStudentResult(i->pScoreboard, studentID);
+								break;
+							} 
+							else if (i->courseNext == nullptr && i->id.compare(courseID) != 0)
+								cout << "This course ID does not exist.";
+						}
+						cont(contchar, login);
+						break;
+					case 19:			//BUG!!!!!!!
+						cout << "Enter class: ";
+						cin >> classname;
+						for (Class* i = curYear->pClass; i != nullptr; i = i->classNext)
+						{
+							if (i->className.compare(classname) == 0)
+							{
+								viewScoreBoardOfClass(i->pStudent,curYear->pSemester);
+								break;
+							}
+							else if (i->classNext == nullptr && i->className.compare(classname) != 0)
+								cout << "Class does not exist.";
+						}
+						cont(contchar, login);
+						break;
 					case 0:
 						login = false;
 						curYear = nullptr;
@@ -228,7 +283,7 @@ int main()
 					}
 				}
 				break;
-			case 2:							//Not done yet!
+			case 2:						
 				system("cls");   
 				login = LogIn(choice,account);
 				if (login)
@@ -246,6 +301,7 @@ int main()
 					cout << "2. Enroll in a course.\n";
 					cout << "3. View list of enrolled courses.\n";
 					cout << "4. Remove course from the enrolled list.\n";
+					cout << "5. View scoreboard.\n";
 					cout << "0. Back.\n";
 					do
 					{
@@ -262,6 +318,8 @@ int main()
 						break;
 					case 2:
 						system("cls");
+						cout << "Enter course ID: ";
+						cin >> courseID;
 						EnrollCourse(curSemester->pCourse, curStudent, courseID,curYear->YearName,curSemester);
 						cont(contchar, login);
 						break;
@@ -275,6 +333,13 @@ int main()
 						cout << "Enter course ID: ";
 						cin >> courseID;
 						removeEnrolledCourse(curStudent->EnrolledCourses, courseID, curSemester);	
+						cont(contchar, login);
+						break;
+					case 5:
+						system("cls");
+						ViewScoreBoard(curSemester->pCourse, curStudent->ID);
+						cont(contchar, login);
+						break;
 					case 0:
 						login = false;
 						curYear = nullptr;

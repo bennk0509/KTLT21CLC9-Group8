@@ -12,23 +12,40 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 	bool monthcheck = false;
 	time_t t = time(NULL);
 	tm* timePtr = localtime(&t);
-	/*if ((1900 + timePtr->tm_year) > pSemester->endReg.year && (1900 + timePtr->tm_year) < pSemester->startReg.year)
+	if ((1900 + timePtr->tm_year) > pSemester->endReg.year || (1900 + timePtr->tm_year) < pSemester->startReg.year)
 	{
 		cout << "You cannot enroll at this moment. Please try again later.\n";
-		yearcheck = true;
 		return;
 	}
-	if ((timePtr->tm_mon + 1) > pSemester->endReg.month && (timePtr->tm_mon + 1) < pSemester->startReg.month)
+	else
 	{
-		cout << "You cannot enroll at this moment. Please try again later.\n";
-		monthcheck = true;
-		return;
+		if ((timePtr->tm_mon + 1) > pSemester->endReg.month || (timePtr->tm_mon + 1) < pSemester->startReg.month)
+		{
+			cout << "You cannot enroll at this moment. Please try again later.\n";
+			return;
+		}
+		else if (pSemester->endReg.month == pSemester->startReg.month)
+		{
+			if (timePtr->tm_mday > pSemester->endReg.day || timePtr->tm_mday < pSemester->startReg.day)
+			{
+				cout << "You cannot enroll at this moment. Please try again later.\n";
+				return;
+			}
+		}
+		else if (pSemester->endReg.month - pSemester->startReg.month == 1)
+		{
+			if ((timePtr->tm_mon + 1) == pSemester->startReg.month && timePtr->tm_mday < pSemester->startReg.day)
+			{
+				cout << "You cannot enroll at this moment. Please try again later.\n";
+				return;
+			}
+			else if (timePtr->tm_mon + 1 == pSemester->endReg.month && timePtr->tm_mday > pSemester->endReg.day)
+			{
+				cout << "You cannot enroll at this moment. Please try again later.\n";
+				return;
+			}
+		}
 	}
-	if ((timePtr->tm_mday > pSemester->endReg.day && timePtr->tm_mday < pSemester->startReg.day) && (!yearcheck && !monthcheck))
-	{
-		cout << "You cannot enroll at this moment. Please try again later.\n";
-		return;
-	}*/
 	if (pCourse == nullptr)
 		return;
 	Course* curCourse = pCourse;
@@ -164,6 +181,10 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 	fstream fout;
 	fout.open(dirO.c_str(), ios::out);
 	curEC = curStudent->EnrolledCourses;
+	for (int i = 0; i < 4; i++)
+		for (int j = 0; j < 7; j++)
+			fout << curStudent->coursesenrolled[i][j] << " ";
+	fout << "\n";
 	while (curEC != nullptr)
 	{
 		fout << curEC->id << endl;
@@ -172,5 +193,6 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 		fout << curEC->sSemester << endl;
 		fout << curEC->maxStudent << endl;
 		fout << curEC->numberOfCredits << endl;
+		curEC = curEC->courseNext;
 	}
 }

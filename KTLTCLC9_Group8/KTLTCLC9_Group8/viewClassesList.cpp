@@ -10,7 +10,7 @@ void viewClassesList(Year *pYear)
     cout<<"Year "<<pYear->YearName;
     while(curClass!= nullptr)
     {
-        cout<<"\t+ "<<curClass->className<<"\n";
+        cout<<"\t" <<curClass->className<<"\n";
         curClass = curClass->classNext;
     }
     pYear=pYear->yearNext;

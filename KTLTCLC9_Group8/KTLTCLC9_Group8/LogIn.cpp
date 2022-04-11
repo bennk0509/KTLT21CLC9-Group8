@@ -10,9 +10,9 @@ bool LogIn(int input, string &account){
 	bool login = false;
 	bool StillLog = true;
 	if (input == 1)
-		account = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\Account.txt";
+		account = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\StaffAccount.txt";
 	else if (input == 2)
-		account = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\Account.txt";
+		account = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\StudentAccount.txt";
 	while(!login || StillLog) {
 		cout << "Do you want to log in?"<<endl;
 		cout << "0: No"<<endl;

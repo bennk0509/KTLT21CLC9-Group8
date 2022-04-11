@@ -35,7 +35,8 @@ void addNewCourse(Course*& pCourse, string semesterName, string yearName, Course
         pCur -> courseNext = newCourse;
         pCur = pCur -> courseNext;
     }
-    _mkdir((c + "\\" + newCourse->id).c_str());
+    if (add == 1)
+        _mkdir((c + "\\" + newCourse->id).c_str());
     c += "\\Course.txt";
     ofstream fout;
     if (add == 1)

@@ -2,30 +2,42 @@
 #include "Staff.h"
 #include <iostream>
 #include <fstream>
-#include <string.h>
-#include <cstring>
+#include <string>
+
 
 using namespace std;
 
 void exportStudentToCsv(Student* pStuInCourse, string courseID) {
-	/*string dirD = "C:\\Data\\File_csv\\Student.csv\\";
-	string c;
-	strcat(c, dirD);
-	strcat(c, courseID);
-	strcat(c, ".csv");
+	_mkdir("C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\ExportedCSV");
+	string dirD = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\ExportedCSV";
+	dirD += "\\" + courseID + "_Student.csv";
 	ofstream fout;
-	fout.open(c);
+	fout.open(dirD);
 	if (fout.is_open()) {
 		int cnt = 0;
-		while (pStuInCourse) {
-			fout << ++cnt << "," << pStuInCourse->studentID << "," << pStuInCourse->Name << "," << pStuInCourse->DOB.year << "-" << pStuInCourse -> DOB.month << "-" << 
-			pStuInCourse -> DOB.day << "," << pStuInCourse->sClass << "," << pStuInCourse->gender;
-			fout << '\n'C
-			pStuInCourse = pStuInCourse->studentNext;
+		Student* pCur = pStuInCourse;
+		while (pCur != nullptr) {
+			fout << cnt++ << ",";
+			fout << pCur->ID << ",";
+			fout << pCur->name << ",";
+			fout << pCur->DOB.year << "-";
+			if (pCur->DOB.month < 10)
+				fout << "0" << pCur->DOB.month;
+			else
+				fout << pCur->DOB.month;
+			fout << "-";
+			if (pCur->DOB.day < 10)
+				fout << "0" << pCur->DOB.day;
+			else
+				fout << pCur->DOB.day;
+			fout << ",";
+			fout << pCur->classname << ",";
+			fout << pCur->gender << endl;
+			pCur = pCur->studentNext;
 		}
-		cout << "Done! The list of students has been exported into the file C:\Data/File_csv/Student.csv" << courseID << ".csv\n\n";
+		cout << "Done! The list of students has been exported into the file _______________ \n\n";
 		system("pause");
 		system("cls");
 	}
-	fout.close();*/
+	fout.close();
 }

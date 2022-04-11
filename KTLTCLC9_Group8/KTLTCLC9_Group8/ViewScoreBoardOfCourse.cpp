@@ -5,6 +5,18 @@ using namespace std;
 
 void ViewScoreBoardOfCourse(Course *pCourse,string courseID)
 {
+    Course* curCourse = pCourse;
+    while (curCourse != nullptr)
+    {
+        if (curCourse->id.compare(courseID) == 0)
+            break;
+        curCourse = curCourse->courseNext;
+    }
+    if (curCourse == nullptr)
+    {
+        cout << "This course ID does not exist.\n";
+        return;
+    }
     Scoreboard *pCur;
     pCur=pCourse->pScoreboard;
     cout << setw(60)<<right<<"VIEW THE SCOREBOARD OF COURSE"<<endl;

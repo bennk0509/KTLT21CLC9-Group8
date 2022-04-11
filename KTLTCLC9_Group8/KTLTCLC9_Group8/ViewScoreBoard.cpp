@@ -4,7 +4,7 @@
 #include <iomanip>
 #include "Student.h"
 
-void ViewScoreBoard(Course *pCourse, char *studentID)
+void ViewScoreBoard(Course *pCourse, string studentID)
 {
     Scoreboard *pCur;
     cout << setw(60)<<right<<"VIEW THE SCOREBOARD"<<endl;
@@ -17,7 +17,7 @@ void ViewScoreBoard(Course *pCourse, char *studentID)
     cout << endl;
     while(pCourse!=nullptr)
     {
-        for(pCur=pCourse->pScoreboard;pCur!=nullptr && pCur->stu->ID==studentID;pCur=pCur->scoreboardNext)
+        for(pCur=pCourse->pScoreboard;pCur!=nullptr && pCur->stu->ID.compare(studentID) == 0;pCur=pCur->scoreboardNext)
         {
         cout <<setw(15)<<left<<pCourse->id;
         cout <<setw(20)<<left<<pCur->midterm;

@@ -196,7 +196,7 @@ void loadData(Year*& pYear, ifstream &yearin)
 				Student* curStudent = curClass->pStudent;
 				while (curStudent->name.compare(pS->name) != 0)
 					curStudent = curStudent->studentNext;
-				string ecdir = "";
+				string ecdir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + curYear->YearName + "\\" + curClass->className + "\\" + curStudent->ID + ".txt";
 				ifstream ecin(ecdir);
 				while (!ecin.eof() && ecin)
 				{
@@ -205,8 +205,9 @@ void loadData(Year*& pYear, ifstream &yearin)
 							ecin >> curStudent->coursesenrolled[i][j];
 					Course* ECourse = new Course;
 					ecin >> ECourse->id;
-					ecin >> ECourse->name;
-					ecin >> ECourse->lecturerName;
+					ecin.ignore(1000, '\n');
+					getline(ecin, ECourse->name);
+					getline(ecin, ECourse->lecturerName);
 					ecin >> ECourse->sSemester;
 					ecin >> ECourse->numberOfCredits;
 					ecin >> ECourse->maxStudent;
@@ -267,13 +268,16 @@ void loadData(Year*& pYear, ifstream &yearin)
 				curSemester = curSemester->semesterNext;
 				curSemester->semesterNext = nullptr;
 			}
-			string coursedir = "Student.txt";
+			string coursedir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + curYear->YearName + "\\Semester\\" + curSemester->semesterName + "\\Course.txt";
 			Course* newCourse ;
 			ifstream coursein(coursedir);
 			while (!coursein.eof() && coursein)
 			{
 				newCourse = new Course;
 				coursein >> newCourse->id;
+				if (newCourse->id.compare("") == 0)
+					break;
+				coursein.ignore(1000, '\n');
 				getline(coursein, newCourse->name);
 				getline(coursein, newCourse->lecturerName);
 				coursein >> newCourse->sSemester;
@@ -351,7 +355,7 @@ void loadData(Year*& pYear, ifstream &yearin)
 					}
 				}
 				cstuin.close();
-				string sbdir = "";
+				string sbdir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + curYear->YearName + "\\Semester" + "\\" + curSemester->semesterName + "\\" + curCourse->id + "\\Scoreboard.txt";
 				Scoreboard* newSB;
 				ifstream sbin(sbdir);
 				Scoreboard* curSB = curCourse->pScoreboard;

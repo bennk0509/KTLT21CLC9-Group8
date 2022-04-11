@@ -49,8 +49,13 @@ Student *findStudent(Year* curYear, string stuID) //find student with student id
     while(curClass!=nullptr)
     {
         curStu=curClass->pStudent;
-        while(curStu->ID!=stuID && curStu!=nullptr)
-            curStu=curStu->studentNext;
+        while (curStu != nullptr)
+        {
+            if (curStu->ID.compare(stuID) == 0)
+                break;
+            curStu = curStu->studentNext;
+        }
+            
         if(curStu!=nullptr)
             return curStu;
         else

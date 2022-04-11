@@ -21,15 +21,13 @@ void inputStudent(Student *&newStu)
     string temp;
     int posOfSlash[2];
     int i=0;  
-    cin.ignore(1000,'\n');
-    cin.clear();
+    
     getline(cin, temp);
     for(int k=0; k< temp.size(); k++)
     {
         if(temp[k]=='/')
             posOfSlash[i++]=k;
     }
-    cout<<posOfSlash[0]<<posOfSlash[1];
     newStu->DOB.day=atoi(temp.substr(0,posOfSlash[0]).c_str());
     newStu->DOB.month=atoi(temp.substr(posOfSlash[0]+1,posOfSlash[1]-posOfSlash[0]-1).c_str());
     newStu->DOB.year=atoi(temp.substr(posOfSlash[1]+1,temp.size()-posOfSlash[1]-1).c_str());
