@@ -54,4 +54,6 @@ void CreateNewYear(Year *&pYear, string yearname, int k)
         output.close();
     output.close();
     cout << "Create new year successfully\n";
+    if (k==1)
+        system("pause");
 }

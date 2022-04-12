@@ -64,7 +64,9 @@ int main()
 					cout << "14. Delete a course.\n";
 					cout << "15. Import scoreboard.\n";
 					cout << "16. View scoreboard of a course\n";
-					cout << "17. Export student list to .csv file.\n";
+					cout << "17. Export student list in a course to .csv file.\n";
+					cout << "18. Update student result.\n";
+					cout << "19. View scoreboard of a class.\n";
 					cout << "0. Back\n";
 					do
 					{
@@ -72,8 +74,8 @@ int main()
 						cin >> choice2;
 						if (!yearcheck && (choice2 > 2))
 							cout << "You have to choose a year in order to use this function, please try 1 or 2.\n";
-						else if (!semestercheck && choice2 > 7 && yearcheck)
-							cout << "You have to choose a semester in order to use this function, please try 6 or 7.\n";
+						else if (!semestercheck && choice2 > 9 && yearcheck)
+							cout << "You have to choose a semester in order to use this function, please try 8 or 9.\n";
 					} while ((!yearcheck && choice2 > 2) || (!semestercheck && choice2 > 9 && yearcheck));
 					switch (choice2)
 					{
@@ -83,7 +85,6 @@ int main()
 							curSemester = nullptr;
 							semestercheck = false;
 						}
-						cont(contchar, login);
 						break;
 					case 2:
 						do
@@ -97,7 +98,7 @@ int main()
 							}
 						} while (yearname.length() != 4 || atoi(yearname.c_str()) == 0);
 						CreateNewYear(pYear, yearname,1);
-						cont(contchar, login);
+					
 						break;
 					
 					case 3:
@@ -105,7 +106,6 @@ int main()
 						cout << "Input class name: ";
 						cin >> classname;
 						createNewClass(curYear->pClass, curYear->YearName, classname, add);
-						cont(contchar, login);
 						break;
 					case 4:											
 					newStu = new Student;
@@ -149,7 +149,7 @@ int main()
 									break;
 								}
 								else if (i->classNext == nullptr && i->className.compare(classname) != 0)
-									cout << "Class is not exist.";
+									cout << "Class does not exist.";
 							}
 						}
 						cont(contchar, login);
@@ -257,14 +257,14 @@ int main()
 						}
 						cont(contchar, login);
 						break;
-					case 19:			//BUG!!!!!!!
+					case 19:			
 						cout << "Enter class: ";
 						cin >> classname;
 						for (Class* i = curYear->pClass; i != nullptr; i = i->classNext)
 						{
 							if (i->className.compare(classname) == 0)
 							{
-								viewScoreBoardOfClass(i->pStudent,curYear->pSemester);
+								viewScoreBoardOfClass(i->pStudent,curYear->pSemester,curSemester);
 								break;
 							}
 							else if (i->classNext == nullptr && i->className.compare(classname) != 0)

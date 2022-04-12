@@ -32,13 +32,17 @@ bool changeYear(Year*& pYear, string& yearname, Year* &curYear, bool &yearcheck)
 		cin >> yearname;
 		if (yearname.length() != 4 || atoi(yearname.c_str()) == 0)
 		{
+			
 			cout << "Format is not correct, please try again";
+			system("pause");
 
 		}
 	} while (yearname.length() != 4 || atoi(yearname.c_str()) == 0);
 	if (pYear == nullptr)
 	{
-		cout << "This year is not exist.";
+		
+		cout << "This year does not exist.";
+		system("pause");
 		return false;
 	}
 	else
@@ -67,15 +71,19 @@ bool changeYear(Year*& pYear, string& yearname, Year* &curYear, bool &yearcheck)
 	}
 	if (curYear == nullptr)
 	{
-		cout << "This year is not exist.";
+		
+		cout << "This year does not exist.\n";
 		yearcheck = false;
+		system("pause");
 		return false;
 	}
 		
 	if (!yearcheck && pYear != nullptr)
 	{
-		cout << "This year is not exist.";
+		
+		cout << "This year does not exist.\n";
 		yearcheck = false;
+		system("pause");
 		return false;
 	}
 	return true;
