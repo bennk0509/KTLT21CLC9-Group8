@@ -43,39 +43,48 @@ int main()
 				login = LogIn(choice,account);
 				while (login)
 				{
-					system("cls");
-					if (yearcheck)
-						cout << "***Year: " << curYear->YearName << endl;
-					if (semestercheck)
-						cout << "***Semester: " << curSemester->semesterName << endl;
-					cout << "1. Choose year\n";
-					cout << "2. Create school year\n";
-					cout << "3. Create classes\n";
-					cout << "4. Add student\n";
-					cout << "5. Add student using CSV\n";
-					cout << "6. View list of classes.\n";
-					cout << "7. View list of students in a class.\n";
-					cout << "8. Create a semester\n";
-					cout << "9. Choose semester\n";
-					cout << "10. Create course registration session\n";
-					cout << "11. Add a course.\n";
-					cout << "12. View the list of courses.\n";
-					cout << "13. Update course information.\n";
-					cout << "14. Delete a course.\n";
-					cout << "15. Import scoreboard.\n";
-					cout << "16. View scoreboard of a course\n";
-					cout << "17. Export student list in a course to .csv file.\n";
-					cout << "18. Update student result.\n";
-					cout << "19. View scoreboard of a class.\n";
-					cout << "0. Back\n";
 					do
 					{
+						system("cls");
+						if (yearcheck)
+							cout << "***Year: " << curYear->YearName << endl;
+						if (semestercheck)
+							cout << "***Semester: " << curSemester->semesterName << endl;
+						cout << "1. Choose year\n";
+						cout << "2. Create school year\n";
+						cout << "3. Create classes\n";
+						cout << "4. Add student\n";
+						cout << "5. Add student using CSV\n";
+						cout << "6. View list of classes.\n";
+						cout << "7. View list of students in a class.\n";
+						cout << "8. Create a semester\n";
+						cout << "9. Choose semester\n";
+						cout << "10. Create course registration session\n";
+						cout << "11. Add a course.\n";
+						cout << "12. View the list of courses.\n";
+						cout << "13. Update course information.\n";
+						cout << "14. Delete a course.\n";
+						cout << "15. Import scoreboard.\n";
+						cout << "16. View scoreboard of a course\n";
+						cout << "17. Export student list in a course to .csv file.\n";
+						cout << "18. Update student result.\n";
+						cout << "19. View scoreboard of a class.\n";
+						cout << "0. Back\n";
 						cout << ">>> ";
 						cin >> choice2;
 						if (!yearcheck && (choice2 > 2))
+						{
 							cout << "You have to choose a year in order to use this function, please try 1 or 2.\n";
+							system("pause");
+						}
+							
 						else if (!semestercheck && choice2 > 9 && yearcheck)
+						{
 							cout << "You have to choose a semester in order to use this function, please try 8 or 9.\n";
+							system("pause");
+						}
+							
+						
 					} while ((!yearcheck && choice2 > 2) || (!semestercheck && choice2 > 9 && yearcheck));
 					switch (choice2)
 					{
@@ -156,13 +165,12 @@ int main()
 						break;
 					case 6:
 						viewClassesList(curYear);
-						cont(contchar, login);
 						break;
 					case 7:				
 						cout << "Enter class: ";
 						cin >> classname;
 						viewListOfStudentsInClass(curYear, classname);
-						cont(contchar, login);
+						system("pause");
 						break;
 					case 8:
 						do
@@ -179,49 +187,46 @@ int main()
 						break;
 					case 9:
 						changeSemester(curYear, curSemester, semesterName, semestercheck);
-						cont(contchar, login);
+						system("pause");
 						break;
 					case 10:
 						CreateCourseRegistrationSession(curSemester,curYear->YearName);
-						cont(contchar, login);
 						break;
 					case 11:
 						system("cls");
 						newCourse = new Course;
 						inputNewCourse(newCourse);
 						addNewCourse(curSemester->pCourse, curSemester->semesterName, curYear->YearName, newCourse, 1);
-						cont(contchar, login);
 						break;
 					case 12:
 						system("cls");
 						ViewListCourse(curSemester->pCourse);
-						cont(contchar, login);
 						break;
 					case 13:
 						system("cls");
 						cout << "Input course ID: ";
 						cin >> courseID;
 						updateCourse(curSemester->pCourse, courseID);
-						cont(contchar, login);
+						system("pause");
 						break;
 					case 14:
 						system("cls");
 						cout << "Input course ID: ";
 						cin >> courseID;
 						deleteCourse(curSemester->pCourse, courseID);
-						cont(contchar, login);
+						system("pause");
 						break;
-					case 15: // Chua Xong
+					case 15: 
 						system("cls");
 						importScoreboard(courseID, curYear, curSemester);
-						cont(contchar, login);
+						system("pause");
 						break;
 					case 16:
 						system("cls");
 						cout << "Enter course ID: ";
 						cin >> courseID;
 						ViewScoreBoardOfCourse(curSemester->pCourse, courseID);
-						cont(contchar, login);
+						system("pause");
 						break;
 					case 17:
 						system("cls");
@@ -237,7 +242,7 @@ int main()
 							else if (i->courseNext == nullptr && i->id.compare(courseID) != 0)
 								cout << "This course ID does not exist.";
 						}
-						cont(contchar, login);
+						system("pause");
 						break;
 					case 18:
 						system("cls");
@@ -255,7 +260,6 @@ int main()
 							else if (i->courseNext == nullptr && i->id.compare(courseID) != 0)
 								cout << "This course ID does not exist.";
 						}
-						cont(contchar, login);
 						break;
 					case 19:			
 						cout << "Enter class: ";
@@ -268,10 +272,13 @@ int main()
 								break;
 							}
 							else if (i->classNext == nullptr && i->className.compare(classname) != 0)
+							{
 								cout << "Class does not exist.";
+								system("pause");
+							}
 						}
-						cont(contchar, login);
 						break;
+					
 					case 0:
 						login = false;
 						curYear = nullptr;
@@ -279,7 +286,10 @@ int main()
 						semestercheck = false;
 						break;
 					default:
+						cout << "This function does not exist.";
+						system("pause");
 						break;
+
 					}
 				}
 				break;
@@ -294,51 +304,55 @@ int main()
 				}
 				while (login)
 				{
-					system("cls");
-					if (semestercheck)
-						cout << "***Semester: " << curSemester->semesterName << endl;
-					cout << "1. Choose semester.\n";
-					cout << "2. Enroll in a course.\n";
-					cout << "3. View list of enrolled courses.\n";
-					cout << "4. Remove course from the enrolled list.\n";
-					cout << "5. View scoreboard.\n";
-					cout << "0. Back.\n";
+					
 					do
 					{
+						system("cls");
+						if (semestercheck)
+							cout << "***Semester: " << curSemester->semesterName << endl;
+						cout << "1. Choose semester.\n";
+						cout << "2. Enroll in a course.\n";
+						cout << "3. View list of enrolled courses.\n";
+						cout << "4. Remove course from the enrolled list.\n";
+						cout << "5. View scoreboard.\n";
+						cout << "0. Back.\n";
 						cout << ">>> ";
 						cin >> choice2;
 						if (!semestercheck && choice2 > 1)
+						{
 							cout << "You have to choose a semester in order to use this function\n";
+							system("pause");
+						}
+							
 					} while (!semestercheck && choice2 > 1);
 					switch (choice2)
 					{
 					case 1:
 						changeSemester(curYear, curSemester, semesterName, semestercheck);
-						cont(contchar, login);
 						break;
 					case 2:
 						system("cls");
 						cout << "Enter course ID: ";
 						cin >> courseID;
 						EnrollCourse(curSemester->pCourse, curStudent, courseID,curYear->YearName,curSemester);
-						cont(contchar, login);
+						system("pause");
 						break;
 					case 3:
 						system("cls");
 						viewEnrollList(curStudent->EnrolledCourses, curSemester->semesterName);
-						cont(contchar, login);
+						system("pause");
 						break;
 					case 4:
 						system("cls");
 						cout << "Enter course ID: ";
 						cin >> courseID;
 						removeEnrolledCourse(curStudent->EnrolledCourses, courseID, curSemester);	
-						cont(contchar, login);
+						system("pause");
 						break;
 					case 5:
 						system("cls");
 						ViewScoreBoard(curSemester->pCourse, curStudent->ID);
-						cont(contchar, login);
+						system("pause");
 						break;
 					case 0:
 						login = false;
@@ -346,6 +360,10 @@ int main()
 						curSemester = nullptr;
 						semestercheck = false;
 						break;
+					default:
+						cout << "This function does not exist.";
+						break;
+
 					}
 				}
 		}

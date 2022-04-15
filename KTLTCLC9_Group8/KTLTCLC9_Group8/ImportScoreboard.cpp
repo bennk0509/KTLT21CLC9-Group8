@@ -8,8 +8,16 @@ using namespace std;
 void importScoreboard(string courseID, Year* curYear, Semester* &curSemester)
 {
     string scoreboardDir="";
+    cout << "Input file's directorty (example: C:\\\\data\\\\student.csv)\n";
+    cout << ">>>>";
+    cin >> scoreboardDir;
     fstream scoreboardcsv;
     scoreboardcsv.open(scoreboardDir,ios::in);
+    if (!scoreboardcsv)
+    {
+        cout << "Cannot open file.\n";
+        return;
+    }
     Course *curCourse=curSemester->pCourse;
     while(curCourse->id!=courseID) //go to course with course id
         curCourse=curCourse->courseNext;

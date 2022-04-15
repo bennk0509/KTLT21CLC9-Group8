@@ -81,15 +81,15 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 	else if (curCourse->date.d2.compare("SAT") == 0) d2 = 5;
 	else if (curCourse->date.d2.compare("SUN") == 0) d2 = 6;
 
-	if (curCourse->date.s1.compare("7.30") == 0) s1 = 0;
-	else if (curCourse->date.s1.compare("9.30") == 0) s1 = 1;
-	else if (curCourse->date.s1.compare("1.30") == 0) s1 = 2;
-	else if (curCourse->date.s1.compare("3.30") == 0) s1 = 3;
+	if (curCourse->date.s1.compare("7:30") == 0) s1 = 0;
+	else if (curCourse->date.s1.compare("9:30") == 0) s1 = 1;
+	else if (curCourse->date.s1.compare("13:30") == 0) s1 = 2;
+	else if (curCourse->date.s1.compare("15:30") == 0) s1 = 3;
 
-	if (curCourse->date.s2.compare("7.30") == 0) s2 = 0;
-	else if (curCourse->date.s2.compare("9.30") == 0) s2 = 1;
-	else if (curCourse->date.s2.compare("1.30") == 0) s2 = 2;
-	else if (curCourse->date.s2.compare("3.30") == 0) s2 = 3;
+	if (curCourse->date.s2.compare("7:30") == 0) s2 = 0;
+	else if (curCourse->date.s2.compare("9:30") == 0) s2 = 1;
+	else if (curCourse->date.s2.compare("13:30") == 0) s2 = 2;
+	else if (curCourse->date.s2.compare("15:30") == 0) s2 = 3;
 
 
 	

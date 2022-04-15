@@ -18,7 +18,7 @@ void addNewCourse(Course*& pCourse, string semesterName, string yearName, Course
    		}
    		pCur = pCur -> courseNext;
    	}
-    string dirD = "C:\\Data\\YearName\\Semester\\SemesterName\\";
+    string dirD = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\";
     string c = dirD + yearName + "\\Semester\\" + semesterName;
  
 
@@ -47,10 +47,12 @@ void addNewCourse(Course*& pCourse, string semesterName, string yearName, Course
 	        fout << pCur -> id << '\n';
 	        fout << pCur -> name << '\n';
 	        fout << pCur -> lecturerName << '\n';
+            fout << pCur->sSemester << '\n';
 	        fout << pCur -> numberOfCredits << '\n';
 	        fout << pCur -> maxStudent << '\n';
-	        fout << pCur -> date.d1 << '\n' << pCur->date.s1 << '\n';
-	        fout << pCur -> date.d2 << '\n' << pCur->date.s2 << '\n';
+            fout << pCur->curStudentNum << '\n';
+	        fout << pCur -> date.d1 << '\n' << pCur->date.d2 << '\n';
+	        fout << pCur -> date.s1 << '\n' << pCur->date.s2 << '\n';
 	        pCur = pCur -> courseNext;
 	    }
  	}

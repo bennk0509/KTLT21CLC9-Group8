@@ -49,7 +49,12 @@ void createNewClass(Class*& pClass, string yearName, string ClassName, int add) 
 			fout << cur -> className;
 	}
 	if (add)
+	{
 		fout.close();
+		cout << "Add new class successfully.\n";
+		system("pause");
+	}
+		
 	dirD += ClassName;
 	int check = _mkdir(dirD.c_str());
 }

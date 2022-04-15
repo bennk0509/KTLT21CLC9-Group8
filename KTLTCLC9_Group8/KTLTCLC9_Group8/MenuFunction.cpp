@@ -93,17 +93,18 @@ void changeSemester(Year* pYear, Semester*& curSemester, string& semesterName, b
 {
 	do
 	{
-		cout << "Input semester name (1,2 or 3): ";
+		cout << "Input semester name (1 to 12): ";
 		cin >> semesterName;
-		if (semesterName != "1" && semesterName != "2" && semesterName != "3")
+		if (stoi(semesterName) < 1 || stoi(semesterName) > 12)
 		{
 			cout << "Incorrect input, please try again\n";
 		}
-	} while (semesterName != "1" && semesterName != "2" && semesterName != "3");
+	} while (stoi(semesterName) < 1 || stoi(semesterName) > 12);
 
 	if (pYear->pSemester == nullptr)
 	{
-		cout << "This semester is not exist.";
+		cout << "This semester does not exist.";
+
 	}
 	else
 	{
@@ -437,6 +438,7 @@ bool logStudent(string account, Year* pYear, Student* &curStudent, Year* &curren
 	if (pYear == nullptr)
 	{
 		cout << "This account does not exist.\n";
+		system("pause");
 		return false;
 	}
 	Year* curYear = pYear;
@@ -453,6 +455,7 @@ bool logStudent(string account, Year* pYear, Student* &curStudent, Year* &curren
 	if (curYear == nullptr)
 	{
 		cout << "This account does not exist.\n";
+		system("pause");
 		return false;
 	}
 	

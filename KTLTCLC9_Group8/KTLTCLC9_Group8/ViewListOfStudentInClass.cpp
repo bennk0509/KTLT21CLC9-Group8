@@ -2,6 +2,7 @@
 #include "Course.h"
 #include "Staff.h"
 #include <string.h>
+#include <iomanip>
 #include <iostream>
 
 using namespace std;
@@ -23,7 +24,7 @@ void viewListOfStudentsInClass(Year* pYear, string className) {
 	Student* curStu = curClass->pStudent;
 	while (curStu != nullptr)
 	{
-		cout << curStu->ID << "  " << curStu->name << curStu->DOB.day << "/" << curStu->DOB.month << "/" << curStu->DOB.year << "  " << curStu->gender << endl;
+		cout << curStu->ID << "  " << curStu->name << "  " <<  curStu->DOB.day << "/" << curStu->DOB.month << "/" << curStu->DOB.year << "  " << curStu->gender << endl;
 		curStu = curStu->studentNext;
 	}
 

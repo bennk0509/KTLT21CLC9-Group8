@@ -37,8 +37,10 @@ void updateCourse(Course *head, string ID)
 {
     if(head==nullptr) return;
     Course *cur=head;
-    while(cur->id!=ID && cur!=nullptr)
+    while(cur!=nullptr)
     {
+        if (cur->id.compare(ID) == 0)
+            break;
         cur=cur->courseNext;
     }
     if(cur==nullptr)
