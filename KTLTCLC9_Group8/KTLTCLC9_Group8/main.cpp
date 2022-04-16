@@ -69,6 +69,7 @@ int main()
 						cout << "17. Export student list in a course to .csv file.\n";
 						cout << "18. Update student result.\n";
 						cout << "19. View scoreboard of a class.\n";
+						cout << "20. Change account password.\n";
 						cout << "0. Back\n";
 						cout << ">>> ";
 						cin >> choice2;
@@ -278,6 +279,9 @@ int main()
 							}
 						}
 						break;
+					case 20:
+						ChangePassword();
+						break;
 					
 					case 0:
 						login = false;
@@ -315,6 +319,7 @@ int main()
 						cout << "3. View list of enrolled courses.\n";
 						cout << "4. Remove course from the enrolled list.\n";
 						cout << "5. View scoreboard.\n";
+						cout << "6. Change account password.\n";
 						cout << "0. Back.\n";
 						cout << ">>> ";
 						cin >> choice2;
@@ -354,6 +359,10 @@ int main()
 						ViewScoreBoard(curSemester->pCourse, curStudent->ID);
 						system("pause");
 						break;
+					case 6:
+						ChangePassword();
+						break;					
+
 					case 0:
 						login = false;
 						curYear = nullptr;

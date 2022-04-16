@@ -13,4 +13,6 @@ Student* findStudent(Year* curYear, string stuID);
 void viewScoreBoardOfClass(Student* pStudent, Semester* pSemester, Semester* curSemester);
 void UpdateStudentResult(Scoreboard* &pScoreboard, string studenID);
 void viewListOfStudentsInClass(Year* pYear, string className);
+void ChangePassword();
+
 #endif // ! _STAFF_H
