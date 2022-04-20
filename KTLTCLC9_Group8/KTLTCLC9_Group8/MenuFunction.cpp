@@ -409,7 +409,16 @@ void loadData(Year*& pYear, ifstream &yearin)
 		semin.close();
 	}
 }
-
+bool Check1(string a)
+{
+	if(a=="MON"|| a=="TUE"|| a=="WED"||a=="THU"|| a=="FRI"||a=="SAT") return true;
+	return false;
+}
+bool Check2(string a)
+{
+	if(a=="7:30"|| a=="9:30"|| a=="13:30"||a=="15:30") return true;
+	return false;
+}
 void inputNewCourse(Course*& newCourse)
 {
 	cout << "Course ID: ";
@@ -422,12 +431,32 @@ void inputNewCourse(Course*& newCourse)
 	cin >> newCourse->numberOfCredits;
 	cout << "Course date 1: ";
 	cin >> newCourse->date.d1;
+	while(Check1==false)
+	{
+		cout << "ERROR, Please try again (input 3 first letter of date)";
+		cin >> newCourse->date.d1;
+	}
 	cout << "Course date 2: ";
 	cin >> newCourse->date.d2;
+	while(Check1==false)
+	{
+		cout << "ERROR, Please try again (input 3 first letter of date)";
+		cin >> newCourse->date.d2;
+	}
 	cout << "Course shift 1: ";
 	cin >> newCourse->date.s1;
+	while(Check2==false)
+	{
+		cout << "ERROR, Please try again (input 7:30,9:30,13:30,15:30)";
+		cin >> newCourse->date.s1;
+	}
 	cout << "Course shift 2: ";
 	cin >> newCourse->date.s2;
+	while(Check2==false)
+	{
+		cout << "ERROR, Please try again (input 7:30,9:30,13:30,15:30)";
+		cin >> newCourse->date.s2;
+	}
 	cout << "Course max student: ";
 	cin >> newCourse->maxStudent;
 }
