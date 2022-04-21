@@ -45,7 +45,7 @@ void CreateCourseRegistrationSession(Semester *&pSemester, string yearName)
     system("pause");
     system("cls");
 
-    string dir = "C:\\KTLTCLC9_Group8\\Data\\yearName\\" + yearName + "\\Semester\\Semester.txt";
+    string dir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\Semester\\" + pSemester->semesterName + "\\Semester.txt";
     ofstream fout(dir);
     Semester* curSemester = pSemester;
     while (curSemester != nullptr)

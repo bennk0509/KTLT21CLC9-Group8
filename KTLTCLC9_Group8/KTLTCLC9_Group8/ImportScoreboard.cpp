@@ -5,28 +5,41 @@
 #include <string>
 using namespace std;
 
-void importScoreboard(string courseID, Year* curYear, Semester* &curSemester)
+void importScoreboard(string courseID, Year* curYear, Semester* &curSemester,int mode)
 {
-    string scoreboardDir="";
+    
+    Course *curCourse=curSemester->pCourse;
+    while(curCourse != nullptr) //go to course with course id
+    {
+        if (curCourse->id.compare(courseID) == 0)
+            break;
+        curCourse = curCourse->courseNext;
+    }
+    if (curCourse == nullptr)
+    {
+        cout << "This course ID does not exist.\n";
+        return;
+    }
+    string scoreboardDir = "";
     cout << "Input file's directorty (example: C:\\\\data\\\\student.csv)\n";
     cout << ">>>>";
-    cin >> scoreboardDir;
+    cin.ignore(1000, '\n');
+    getline(cin, scoreboardDir);
     fstream scoreboardcsv;
-    scoreboardcsv.open(scoreboardDir,ios::in);
+    scoreboardcsv.open(scoreboardDir, ios::in);
     if (!scoreboardcsv)
     {
         cout << "Cannot open file.\n";
         return;
     }
-    Course *curCourse=curSemester->pCourse;
-    while(curCourse->id!=courseID) //go to course with course id
-        curCourse=curCourse->courseNext;
     Scoreboard *curSB = curCourse->pScoreboard;
     string temp;
+    ofstream fout;
+    string dirO = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + curYear->YearName + "\\Semester" + "\\" + curSemester->semesterName + "\\" + curCourse->id + "\\Scoreboard.txt";
+    
     // No, Student ID, Student Full Name, Total Mark, Final Mark, Midterm Mark, Other Mark. 
     while(!scoreboardcsv.eof()) //get data line by line
     {
-        scoreboardcsv.ignore(1000,'\n');
         Scoreboard *newSB= new Scoreboard;
         getline(scoreboardcsv,temp,',');
         getline(scoreboardcsv,temp,',');
@@ -45,9 +58,32 @@ void importScoreboard(string courseID, Year* curYear, Semester* &curSemester)
         newSB->midterm=stof(temp);
         getline(scoreboardcsv,temp,'\n');
         newSB->bonus=stof(temp);
-        curSB->scoreboardNext=newSB;
-        curSB=curSB->scoreboardNext;
+        if (curCourse->pScoreboard == nullptr)
+        {
+            curCourse->pScoreboard = newSB;
+            curSB = curCourse->pScoreboard;
+        }
+        else
+        {
+            curSB->scoreboardNext = newSB;
+            curSB = curSB->scoreboardNext;
+        }
+        
     }
+    if (mode == 1)
+    {
+        fout.open(dirO);
+        curSB = curCourse->pScoreboard;
+        int count = 1;
+        while (curSB != nullptr)
+        {
+            fout << count << "," << curSB->stu->ID << "," << curSB->stu->name << "," << curSB->total << "," << curSB->final << "," << curSB->midterm << "," << curSB->bonus << "\n";
+            curSB = curSB->scoreboardNext;
+            count++;
+        }
+    }
+        
+
 }
 
 Student *findStudent(Year* curYear, string stuID) //find student with student id in curYear

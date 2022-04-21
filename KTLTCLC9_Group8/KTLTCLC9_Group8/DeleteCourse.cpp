@@ -7,7 +7,7 @@
 #include "Course.h"
 using namespace std;
 
-void deleteCourse(Course *&head, string ID)
+void deleteCourse(Course *&head, string ID,Year* curYear, Semester* &curSemester)
 {
     if(head==nullptr) return;
     Course *cur=head;
@@ -33,5 +33,5 @@ void deleteCourse(Course *&head, string ID)
     }
     system("cls");
     cout<<"Course deleted!";
-    updateCourseData(head);
+    updateCourseData(head,curYear, curSemester);
 }

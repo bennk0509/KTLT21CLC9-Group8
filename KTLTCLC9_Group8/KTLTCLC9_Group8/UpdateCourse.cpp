@@ -7,10 +7,10 @@
 #include "Course.h"
 using namespace std;
 
-void updateCourseData(Course *head) //ham nay can dien file direction voi cach luu
+void updateCourseData(Course *head, Year* curYear, Semester* &curSemester) //ham nay can dien file direction voi cach luu
 {
 
-    string courseDir=""; //file direct cung k biet ghi sao not
+    string courseDir="C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + curYear->YearName + "\\Semester\\" + curSemester->semesterName + "\\Course.txt";
     fstream output;
     output.open(courseDir, ios::out);
     if(output.fail()) 
@@ -22,18 +22,20 @@ void updateCourseData(Course *head) //ham nay can dien file direction voi cach l
     Course *cur;
     for(cur=head; cur!=nullptr; cur=cur->courseNext)
     {
-	    output << cur -> id << '\n';
-	    output << cur -> name << '\n';
-	    output << cur -> lecturerName << '\n';
-	    output << cur -> numberOfCredits << '\n';
-	    output << cur -> maxStudent << '\n';
-	    output << cur -> date.d1 << '\n' << cur->date.s1 << '\n';
-	    output << cur -> date.d2 << '\n' << cur->date.s2 << '\n';
+        output << cur->id << '\n';
+        output << cur->name << '\n';
+        output << cur->lecturerName << '\n';
+        output << cur->sSemester << '\n';
+        output << cur->numberOfCredits << '\n';
+        output << cur->maxStudent << '\n';
+        output << cur->curStudentNum << '\n';
+        output << cur->date.d1 << '\n' << cur->date.d2 << '\n';
+        output << cur->date.s1 << '\n' << cur->date.s2 << '\n';
     }
     output.close();
 }
 
-void updateCourse(Course *head, string ID)
+void updateCourse(Course *head, string ID, Year* curYear, Semester*& curSemester)
 {
     if(head==nullptr) return;
     Course *cur=head;
@@ -119,5 +121,5 @@ void updateCourse(Course *head, string ID)
         } while (choose!=0 && choose!=1);
         cont = (choose==1) ? true : false; 
     }
-    updateCourseData(head);
+    updateCourseData(head,curYear,curSemester);
 }

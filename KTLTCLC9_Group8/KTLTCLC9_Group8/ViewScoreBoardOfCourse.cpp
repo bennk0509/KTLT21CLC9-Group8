@@ -21,7 +21,7 @@ void ViewScoreBoardOfCourse(Course *pCourse,string courseID)
     pCur=pCourse->pScoreboard;
     cout << setw(60)<<right<<"VIEW THE SCOREBOARD OF COURSE"<<endl;
     cout << endl;
-    cout <<setw(15)<<left<<"Name";
+    cout <<setw(15)<<left<< setw(30) << right <<"Name | ";
     cout <<setw(15)<<left<<"ID";
     cout <<setw(20)<<left<<"Midterm's Mark";
     cout <<setw(20)<<left<<"Final's Mark";
@@ -29,7 +29,7 @@ void ViewScoreBoardOfCourse(Course *pCourse,string courseID)
     cout <<setw(20)<<left<<"Total's Mark"<<endl;
     cout << endl;
     while (pCur!=nullptr) {
-        cout << setw(15) << left << pCur->stu->name;
+        cout << setw(15) << left << setw(30) << right << pCur->stu->name << " | ";
         cout << setw(15) << left << pCur->stu->ID;
         cout << setw(20) << left << pCur->midterm;
         cout << setw(20) << left << pCur->final;

@@ -142,9 +142,10 @@ int main()
 						cin >> classname;
 						cout << "Input file's directorty (example: C:\\\\data\\\\student.csv) or input 'default' to choose default path\n";
 						cout << ">>>>";
-						cin >> disk;
+						cin.ignore(1000, '\n');
+						getline(cin,disk);
 						if (disk.compare("default") == 0)
-							disk = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\StudentCSV\\" + classname + "_Student.scv";
+							disk = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\StudentCSV\\" + classname + "_Student.csv";
 						fin.open(disk);
 						if (!fin)
 							cout << "Cannot open file.\n";
@@ -162,7 +163,8 @@ int main()
 									cout << "Class does not exist.";
 							}
 						}
-						cont(contchar, login);
+						fin.close();
+						system("pause");
 						break;
 					case 6:
 						viewClassesList(curYear);
@@ -170,6 +172,7 @@ int main()
 					case 7:				
 						cout << "Enter class: ";
 						cin >> classname;
+						system("cls");
 						viewListOfStudentsInClass(curYear, classname);
 						system("pause");
 						break;
@@ -184,7 +187,7 @@ int main()
 							}
 						} while (stoi(semesterName) < 1 || stoi(semesterName) > 12);
 						CreateNewSemester(curYear->pSemester,curYear->YearName,semesterName,curSemester,semestercheck,sdefault);
-						cont(contchar, login);
+						system("pause");
 						break;
 					case 9:
 						changeSemester(curYear, curSemester, semesterName, semestercheck);
@@ -192,12 +195,14 @@ int main()
 						break;
 					case 10:
 						CreateCourseRegistrationSession(curSemester,curYear->YearName);
+						system("pause");
 						break;
 					case 11:
 						system("cls");
 						newCourse = new Course;
-						inputNewCourse(newCourse);
+						inputNewCourse(newCourse,curSemester);
 						addNewCourse(curSemester->pCourse, curSemester->semesterName, curYear->YearName, newCourse, 1);
+						system("pause");
 						break;
 					case 12:
 						system("cls");
@@ -207,19 +212,21 @@ int main()
 						system("cls");
 						cout << "Input course ID: ";
 						cin >> courseID;
-						updateCourse(curSemester->pCourse, courseID);
+						updateCourse(curSemester->pCourse, courseID,curYear,curSemester);
 						system("pause");
 						break;
 					case 14:
 						system("cls");
 						cout << "Input course ID: ";
 						cin >> courseID;
-						deleteCourse(curSemester->pCourse, courseID);
+						deleteCourse(curSemester->pCourse, courseID, curYear,curSemester);
 						system("pause");
 						break;
 					case 15: 
 						system("cls");
-						importScoreboard(courseID, curYear, curSemester);
+						cout << "Input course ID: ";
+						cin >> courseID;
+						importScoreboard(courseID, curYear, curSemester, 1);
 						system("pause");
 						break;
 					case 16:
@@ -288,6 +295,7 @@ int main()
 						curYear = nullptr;
 						curSemester = nullptr;
 						semestercheck = false;
+						yearcheck = false;
 						break;
 					default:
 						cout << "This function does not exist.";
@@ -368,6 +376,7 @@ int main()
 						curYear = nullptr;
 						curSemester = nullptr;
 						semestercheck = false;
+						yearcheck = false;
 						break;
 					default:
 						cout << "This function does not exist.";

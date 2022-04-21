@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AddCourse.cpp" />
+    <ClCompile Include="ChangePassword.cpp" />
     <ClCompile Include="CreateaCourseRegistrationSession.cpp" />
     <ClCompile Include="CreateNewSemester.cpp" />
     <ClCompile Include="CreateNewYear.cpp" />

@@ -8,7 +8,7 @@ void viewStudentListInCourse(Student *head);
 void CreateNewYear(Year*& pYear, string yearname, int k);
 void exportStudentToCsv(Student* pStuInCourse, string courseID);
 void ViewScoreBoardOfCourse(Course *pCourse,string courseID);
-void importScoreboard(string courseID, Year* curYear, Semester*& curSemester);
+void importScoreboard(string courseID, Year* curYear, Semester* &curSemester, int mode);
 Student* findStudent(Year* curYear, string stuID);
 void viewScoreBoardOfClass(Student* pStudent, Semester* pSemester, Semester* curSemester);
 void UpdateStudentResult(Scoreboard* &pScoreboard, string studenID);

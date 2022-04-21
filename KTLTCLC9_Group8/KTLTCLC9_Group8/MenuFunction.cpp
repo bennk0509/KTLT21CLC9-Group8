@@ -371,6 +371,7 @@ void loadData(Year*& pYear, ifstream &yearin)
 				string temp;
 				while (!sbin.eof() && sbin)
 				{
+
 					newSB = new Scoreboard;
 					getline(sbin, temp, ',');
 					getline(sbin, temp, ',');
@@ -396,11 +397,10 @@ void loadData(Year*& pYear, ifstream &yearin)
 					}
 					else
 					{
-						while (curSB->scoreboardNext != nullptr)
-							curSB = curSB->scoreboardNext;
 						curSB->scoreboardNext = newSB;
 						curSB = curSB->scoreboardNext;
 					}
+
 						
 					
 				}
@@ -411,16 +411,17 @@ void loadData(Year*& pYear, ifstream &yearin)
 }
 bool Check1(string a)
 {
-	if(a=="MON"|| a=="TUE"|| a=="WED"||a=="THU"|| a=="FRI"||a=="SAT") return true;
+	if(a.compare("MON") == 0 || a.compare("TUE") == 0|| a.compare("WED")== 0||a.compare("THU") == 0|| a.compare("FRI") == 0||a.compare("SAT") == 0) return true;
 	return false;
 }
 bool Check2(string a)
 {
-	if(a=="7:30"|| a=="9:30"|| a=="13:30"||a=="15:30") return true;
+	if(a.compare("7:30") == 0|| a.compare("9:30")|| a.compare("13:30")||a.compare("15:30")) return true;
 	return false;
 }
-void inputNewCourse(Course*& newCourse)
+void inputNewCourse(Course*& newCourse, Semester* curSemester)
 {
+	newCourse->sSemester = curSemester->semesterName;
 	cout << "Course ID: ";
 	cin >> newCourse->id;
 	cout << "Course name: ";
@@ -431,28 +432,28 @@ void inputNewCourse(Course*& newCourse)
 	cin >> newCourse->numberOfCredits;
 	cout << "Course date 1: ";
 	cin >> newCourse->date.d1;
-	while(Check1==false)
+	while(Check1(newCourse->date.d1) == false)
 	{
 		cout << "ERROR, Please try again (input 3 first letter of date)";
 		cin >> newCourse->date.d1;
 	}
 	cout << "Course date 2: ";
 	cin >> newCourse->date.d2;
-	while(Check1==false)
+	while(Check1(newCourse->date.d2) == false)
 	{
 		cout << "ERROR, Please try again (input 3 first letter of date)";
 		cin >> newCourse->date.d2;
 	}
 	cout << "Course shift 1: ";
 	cin >> newCourse->date.s1;
-	while(Check2==false)
+	while(Check2(newCourse->date.s1) == false)
 	{
 		cout << "ERROR, Please try again (input 7:30,9:30,13:30,15:30)";
 		cin >> newCourse->date.s1;
 	}
 	cout << "Course shift 2: ";
 	cin >> newCourse->date.s2;
-	while(Check2==false)
+	while(Check2(newCourse->date.s2) == false)
 	{
 		cout << "ERROR, Please try again (input 7:30,9:30,13:30,15:30)";
 		cin >> newCourse->date.s2;
