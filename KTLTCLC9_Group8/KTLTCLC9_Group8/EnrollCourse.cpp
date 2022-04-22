@@ -95,7 +95,7 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 	
 	if (curStudent->coursesenrolled[s1][d1] || curStudent->coursesenrolled[s2][d2])
 	{
-		cout << "The current course has sessions that are conflict with existing enrolled course sessions, cannot enrolled!\n\n";
+		cout << "The current course has sessions that are conflict with existing enrolled course sessions, cannot enroll!\n\n";
 		return;
 	}
 	
@@ -108,12 +108,12 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 	}
 	if (count >= 5)
 	{
-		cout << "You have reached maximum courses, cannot enroll";
+		cout << "You have reached maximum courses, cannot enroll.\n";
 		return;
 	}
 	if (curCourse->curStudentNum == curCourse->maxStudent)
 	{
-		cout << "Reached maximum students, cannot enroll";
+		cout << "Reached maximum students, cannot enroll.\n";
 		return;
 	}
 	
@@ -137,6 +137,7 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 	}
 	else
 	{
+		curEC = curStudent->EnrolledCourses;
 		while (curEC->courseNext != nullptr)
 			curEC = curEC->courseNext;
 		curEC->courseNext = new Course;
@@ -177,7 +178,7 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 		stuCourse->DOB = curStudent->DOB;
 		stuCourse->studentNext = nullptr;
 	}
-	string dirO = "\\Data\\yearName\\" + yearName; +"\\" + curStudent->classname + "\\" + curStudent->ID + ".txt";
+	string dirO = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName +"\\" + curStudent->classname + "\\" + curStudent->ID + ".txt";
 	fstream fout;
 	fout.open(dirO.c_str(), ios::out);
 	curEC = curStudent->EnrolledCourses;
@@ -191,8 +192,10 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 		fout << curEC->name << endl;
 		fout << curEC->lecturerName << endl;
 		fout << curEC->sSemester << endl;
-		fout << curEC->maxStudent << endl;
 		fout << curEC->numberOfCredits << endl;
+		fout << curEC->maxStudent << endl;
+		fout << curEC->curStudentNum << endl;
+		fout << curEC->date.d1 << " " << curEC->date.d2 << " " << curEC->date.s1 << " " << curEC->date.s2 << endl;
 		curEC = curEC->courseNext;
 	}
 }

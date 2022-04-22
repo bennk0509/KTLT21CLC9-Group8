@@ -207,11 +207,14 @@ void loadData(Year*& pYear, ifstream &yearin)
 					curStudent = curStudent->studentNext;
 				string ecdir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + curYear->YearName + "\\" + curClass->className + "\\" + curStudent->ID + ".txt";
 				ifstream ecin(ecdir);
-				while (!ecin.eof() && ecin)
+				if (ecin)
 				{
 					for (int i = 0; i < 4; i++)
 						for (int j = 0; j < 7; j++)
 							ecin >> curStudent->coursesenrolled[i][j];
+				}
+				while (!ecin.eof() && ecin)
+				{
 					Course* ECourse = new Course;
 					ecin >> ECourse->id;
 					ecin.ignore(1000, '\n');

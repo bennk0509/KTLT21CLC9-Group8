@@ -1,12 +1,4 @@
-﻿  AddCourse.cpp
-  CreateaCourseRegistrationSession.cpp
-  DeleteCourse.cpp
-  main.cpp
-  MenuFunction.cpp
+﻿  MenuFunction.cpp
 C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\MenuFunction.cpp(176,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\MenuFunction.cpp(323,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  UpdateCourse.cpp
-  ViewListCourse.cpp
-  ViewListOfStudentInClass.cpp
-  Generating Code...
+C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\KTLTCLC9_Group8\MenuFunction.cpp(326,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   KTLTCLC9_Group8.vcxproj -> C:\Users\ADMIN\OneDrive\Documents\GitHub\KTLT21CLC9-Group8\KTLTCLC9_Group8\x64\Debug\KTLTCLC9_Group8.exe
