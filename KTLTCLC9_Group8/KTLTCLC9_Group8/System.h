@@ -7,6 +7,6 @@ void changeSemester(Year* pYear, Semester*& curSemester, string& semesterName, b
 void inputNewCourse(Course*& newCourse, Semester* curSemester);
 bool logStudent(string account, Year* pYear, Student*& curStudent, Year*& currentYear);
 void loadData(Year*& pYear, ifstream& yearin);
-void ChangePassword();
+void ChangePassword(int role);
 #endif // !_SYSTEM_H_
 

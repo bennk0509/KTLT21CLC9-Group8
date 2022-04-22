@@ -73,6 +73,8 @@ int main()
 						cout << "0. Back\n";
 						cout << ">>> ";
 						cin >> choice2;
+						if (choice2 == 20)
+							break;
 						if (!yearcheck && (choice2 > 2))
 						{
 							cout << "You have to choose a year in order to use this function, please try 1 or 2.\n";
@@ -287,7 +289,7 @@ int main()
 						}
 						break;
 					case 20:
-						ChangePassword();
+						ChangePassword(1);
 						break;
 					
 					case 0:
@@ -331,6 +333,8 @@ int main()
 						cout << "0. Back.\n";
 						cout << ">>> ";
 						cin >> choice2;
+						if (choice2 == 6)
+							break;
 						if (!semestercheck && choice2 > 1)
 						{
 							cout << "You have to choose a semester in order to use this function\n";
@@ -368,7 +372,7 @@ int main()
 						system("pause");
 						break;
 					case 6:
-						ChangePassword();
+						ChangePassword(2);
 						break;					
 
 					case 0:

@@ -4,12 +4,17 @@
 #include <string>
 using namespace std;
 
-void ChangePassword()
+void ChangePassword(int role)
 {
     fstream input, output;
-    string accDir="C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\Account.txt";
+    string s;
+    if (role == 1)
+        s = "StaffAccount.txt";
+    else
+        s = "StudentAccount.txt";
+    string accDir="C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\" + s;
     input.open(accDir, ios::in);
-    output.open(accDir, ios::out);
+
     if(input.fail())
     {
         cout<<"Account file opening failed!";
@@ -36,7 +41,7 @@ void ChangePassword()
     Account *cur=head;
     while(cur!=nullptr)
     {
-        if(cur->username==username && cur->password==password)
+        if(cur->username.compare(username) == 0 && cur->password.compare(password) == 0)
         {
             break;
         }
@@ -48,6 +53,8 @@ void ChangePassword()
     if(cur==nullptr)
     {
         cout<<"Wrong username or password!";
+        system("pause");
+        return;
     }
     else
     {
@@ -58,9 +65,10 @@ void ChangePassword()
         cout<<"Password changed!";
     }
     cur=head;
+    output.open(accDir, ios::out);
     while(cur!=nullptr)
     {
-        output<<cur->username<<" "<<cur->password<<"\n";
+        output<<cur->username<<"\n"<<cur->password<<"\n";
         cur=cur->nextAcc;
     }
     
