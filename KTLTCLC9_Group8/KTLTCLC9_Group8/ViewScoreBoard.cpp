@@ -17,15 +17,18 @@ void ViewScoreBoard(Course *pCourse, string studentID)
     cout << endl;
     while(pCourse!=nullptr)
     {
-        for(pCur=pCourse->pScoreboard;pCur!=nullptr && pCur->stu->ID.compare(studentID) == 0;pCur=pCur->scoreboardNext)
+        for(pCur=pCourse->pScoreboard;pCur!=nullptr;pCur=pCur->scoreboardNext)
         {
-        cout <<setw(15)<<left<<pCourse->id;
-        cout <<setw(20)<<left<<pCur->midterm;
-        cout <<setw(20)<<left<<pCur->final;
-        cout <<setw(20)<<left<<pCur->bonus;
-        cout <<setw(20)<<left<<pCur->total<<endl;
-        cout << endl;
-        break;
+            if (pCur->stu->ID.compare(studentID) == 0)
+            {
+                cout << setw(15) << left << pCourse->id;
+                cout << setw(20) << left << pCur->midterm;
+                cout << setw(20) << left << pCur->final;
+                cout << setw(20) << left << pCur->bonus;
+                cout << setw(20) << left << pCur->total << endl;
+                cout << endl;
+                break;
+            }
         }
     pCourse=pCourse->courseNext;
     }
