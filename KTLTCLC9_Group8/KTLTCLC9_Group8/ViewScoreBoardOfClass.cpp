@@ -32,8 +32,7 @@ void viewScoreBoardOfClass(Student * pStudent, Semester * pSemester, Semester* c
 	    			if (curScr -> stu -> ID.compare(curStu -> ID) == 0) { 
 						if (curSem -> semesterName.compare(curSemester->semesterName) == 0) {
 							
-							cout << setw(10) << left << curCourse->id;
-							cout << setw(10) << right << curScr->total << "\n";
+							cout << setw(30) << left << curScr->total ;
 			    			cntCourseSem++;
 			    			totMarkSem += curScr -> total;
 						}
@@ -47,8 +46,8 @@ void viewScoreBoardOfClass(Student * pStudent, Semester * pSemester, Semester* c
 	    	curSem = curSem -> semesterNext;
 		}
 		
-  	  	cout << setw(30) << left << totMarkSem / cntCourseSem << "\n";
-	    cout << setw(30) << left << totCourse / cntCourse << '\n';
+  	  	cout << setw(20) << left << totMarkSem / cntCourseSem ;
+	    cout << setw(20) << left << totCourse / cntCourse << '\n';
 
 		curStu = curStu -> studentNext;
 	}
