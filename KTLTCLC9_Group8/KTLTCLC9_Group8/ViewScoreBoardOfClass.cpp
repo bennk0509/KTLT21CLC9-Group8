@@ -9,49 +9,48 @@ void viewScoreBoardOfClass(Student * pStudent, Semester * pSemester, Semester* c
 	system("cls");
     cout << setw(18) << left << "Student's ID";
     cout << setw(30) << left << "Student's Name";
-	cout << setw(30) << left << "Course total mark";
+	/*cout << setw(30) << left << "Course total mark";
     cout << setw(20) << left << "GPA this semester";
-    cout << setw(20) << left << "GPA overall" << '\n';
+    cout << setw(20) << left << "GPA overall" << '\n';*/
     cout << '\n';
     Student *curStu = pStudent;
 	while (curStu) {
-	    cout << setw(18) << left << curStu -> ID;
-	    cout << setw(30) << left << curStu -> name; 
+		cout << setw(18) << left << curStu->ID;
+		cout << setw(30) << left << curStu->name;
 		Semester* curSem = pSemester;
-			
+
 		int cntCourseSem = 0;
 		double totMarkSem = 0;
 		int cntCourse = 0;
 		double totCourse = 0;
 
 		while (curSem) {
-	    	Course *curCourse = curSem -> pCourse;
-	    	while (curCourse) {
-	    		Scoreboard *curScr = curCourse -> pScoreboard;
-	    		while (curScr) {
-	    			if (curScr -> stu -> ID.compare(curStu -> ID) == 0) { 
-						if (curSem -> semesterName.compare(curSemester->semesterName) == 0) {
-							
-							cout << setw(30) << left << curScr->total ;
-			    			cntCourseSem++;
-			    			totMarkSem += curScr -> total;
+			Course* curCourse = curSem->pCourse;
+			while (curCourse) {
+				Scoreboard* curScr = curCourse->pScoreboard;
+				while (curScr) {
+					if (curScr->stu->ID.compare(curStu->ID) == 0) {
+						if (curSem->semesterName.compare(curSemester->semesterName) == 0) {
+
+							cout << curCourse->id << "|" << setw(30) << left << curScr->total;
+							cntCourseSem++;
+							totMarkSem += curScr->total;
 						}
 						cntCourse++;
-						totCourse += curScr -> total;
+						totCourse += curScr->total;
 					}
-					curScr = curScr -> scoreboardNext;
+					curScr = curScr->scoreboardNext;
 				}
-			    curCourse = curCourse -> courseNext;
-	    	}
-	    	curSem = curSem -> semesterNext;
+				curCourse = curCourse->courseNext;
+			}
+			curSem = curSem->semesterNext;
 		}
-		
-  	  	cout << setw(20) << left << totMarkSem / cntCourseSem ;
-	    cout << setw(20) << left << totCourse / cntCourse << '\n';
 
-		curStu = curStu -> studentNext;
+		cout << "Semester GPA | " << setw(20) << left << totMarkSem / cntCourseSem;
+		cout << "Overall GPA | " << setw(20) << left << totCourse / cntCourse << '\n';
+
+		curStu = curStu->studentNext;
 	}
-
 	system("pause");
 	system("cls");
 }

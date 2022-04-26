@@ -68,7 +68,7 @@ void ChangePassword(int role)
     output.open(accDir, ios::out);
     while(cur!=nullptr)
     {
-        output<<cur->username<<"\n"<<cur->password<<"\n";
+        output<<cur->username << " " << cur->password;
         cur=cur->nextAcc;
     }
     

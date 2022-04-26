@@ -428,9 +428,10 @@ void inputNewCourse(Course*& newCourse, Semester* curSemester)
 	cout << "Course ID: ";
 	cin >> newCourse->id;
 	cout << "Course name: ";
-	cin >> newCourse->name;
+	cin.ignore(1000, '\n');
+	getline(cin, newCourse->name);
 	cout << "Course's lecturer's name: ";
-	cin >> newCourse->lecturerName;
+	getline(cin, newCourse->lecturerName);
 	cout << "Number of credits: ";
 	cin >> newCourse->numberOfCredits;
 	cout << "Course date 1: ";
