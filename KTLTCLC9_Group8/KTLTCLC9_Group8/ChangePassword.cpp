@@ -70,7 +70,7 @@ void ChangePassword(int role)
     while(cur!=nullptr)
     {
         if (count > 0)
-            cout << "\n";
+            output << "\n";
         output<<cur->username << "\n" << cur->password;
         cur=cur->nextAcc;
         count++;
