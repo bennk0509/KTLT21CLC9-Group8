@@ -363,7 +363,7 @@ int main()
 						system("cls");
 						cout << "Enter course ID: ";
 						cin >> courseID;
-						removeEnrolledCourse(curStudent->EnrolledCourses, courseID, curSemester);	
+						removeEnrolledCourse(curStudent->EnrolledCourses, courseID, curSemester,curStudent,curYear->YearName);	
 						system("pause");
 						break;
 					case 5:

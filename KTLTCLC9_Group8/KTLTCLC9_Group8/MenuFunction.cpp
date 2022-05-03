@@ -517,3 +517,32 @@ bool logStudent(string account, Year* pYear, Student* &curStudent, Year* &curren
 	}
 	return true;
 }
+
+void courseDate(int& d1, int& d2, int& s1, int& s2, Course* &curCourse)
+{
+	if (curCourse->date.d1.compare("MON") == 0) d1 = 0;
+	else if (curCourse->date.d1.compare("TUE") == 0) d1 = 1;
+	else if (curCourse->date.d1.compare("WED") == 0) d1 = 2;
+	else if (curCourse->date.d1.compare("THU") == 0) d1 = 3;
+	else if (curCourse->date.d1.compare("FRI") == 0) d1 = 4;
+	else if (curCourse->date.d1.compare("SAT") == 0) d1 = 5;
+	else if (curCourse->date.d1.compare("SUN") == 0) d1 = 6;
+
+	if (curCourse->date.d2.compare("MON") == 0) d2 = 0;
+	else if (curCourse->date.d2.compare("TUE") == 0) d2 = 1;
+	else if (curCourse->date.d2.compare("WED") == 0) d2 = 2;
+	else if (curCourse->date.d2.compare("THU") == 0) d2 = 3;
+	else if (curCourse->date.d2.compare("FRI") == 0) d2 = 4;
+	else if (curCourse->date.d2.compare("SAT") == 0) d2 = 5;
+	else if (curCourse->date.d2.compare("SUN") == 0) d2 = 6;
+
+	if (curCourse->date.s1.compare("7:30") == 0) s1 = 0;
+	else if (curCourse->date.s1.compare("9:30") == 0) s1 = 1;
+	else if (curCourse->date.s1.compare("13:30") == 0) s1 = 2;
+	else if (curCourse->date.s1.compare("15:30") == 0) s1 = 3;
+
+	if (curCourse->date.s2.compare("7:30") == 0) s2 = 0;
+	else if (curCourse->date.s2.compare("9:30") == 0) s2 = 1;
+	else if (curCourse->date.s2.compare("13:30") == 0) s2 = 2;
+	else if (curCourse->date.s2.compare("15:30") == 0) s2 = 3;
+}

@@ -6,18 +6,7 @@ asd
 4
 50
 0
-MON 
-TUE 
-7:30 
-9:30
-006
-asd
-asd
-2
-4
-50
-0
-MON MON 13:30 15:30
+MON TUE 7:30 9:30
 007
 asdsa
 asdsa
@@ -42,3 +31,11 @@ adsa
 50
 0
 SAT SAT 7:30 9:30
+006
+asd
+asd
+2
+4
+50
+0
+MON MON 13:30 15:30

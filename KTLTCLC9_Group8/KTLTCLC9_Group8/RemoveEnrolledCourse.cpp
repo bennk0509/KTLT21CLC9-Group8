@@ -1,12 +1,13 @@
 #pragma warning(disable:4996)
 #include "Struct.h"
 #include "Student.h"
+#include "System.h"
 #include <iostream>
 #include <string>
 #include <ctime>
 using namespace std;
 
-void removeEnrolledCourse(Course *&ELhead, string ID, Semester* pSemester)
+void removeEnrolledCourse(Course *&ELhead, string ID, Semester* pSemester, Student* &curStudent, string yearName)
 {
 	bool courseCheck = false;
 	bool yearcheck = false;
@@ -52,6 +53,10 @@ void removeEnrolledCourse(Course *&ELhead, string ID, Semester* pSemester)
     if(ELhead->id==ID)
     {
         ELhead=ELhead->courseNext;
+		int d1, d2, s1, s2;
+		courseDate(d1, d2, s1, s2,ELhead);
+		curStudent->coursesenrolled[s1][d1] = false;
+		curStudent->coursesenrolled[s2][d2] = false;
         delete cur;
     }
     else
@@ -66,9 +71,34 @@ void removeEnrolledCourse(Course *&ELhead, string ID, Semester* pSemester)
             return;
         }
         Course *temp=cur->courseNext;
+		int d1, d2, s1, s2;
+		courseDate(d1, d2, s1, s2, temp);
+		curStudent->coursesenrolled[s1][d1] = false;
+		curStudent->coursesenrolled[s2][d2] = false;
         cur->courseNext=temp->courseNext;
         delete temp;
     }
+	string dirO = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\" + curStudent->classname + "\\" + curStudent->ID + ".txt";
+	fstream fout;
+	fout.open(dirO.c_str(), ios::out);
+	Course * curEC = curStudent->EnrolledCourses;
+	for (int i = 0; i < 4; i++)
+		for (int j = 0; j < 7; j++)
+			fout << curStudent->coursesenrolled[i][j] << " ";
+	fout << "\n";
+	while (curEC != nullptr)
+	{
+		fout << curEC->id << endl;
+		fout << curEC->name << endl;
+		fout << curEC->lecturerName << endl;
+		fout << curEC->sSemester << endl;
+		fout << curEC->numberOfCredits << endl;
+		fout << curEC->maxStudent << endl;
+		fout << curEC->curStudentNum << endl;
+		fout << curEC->date.d1 << " " << curEC->date.d2 << " " << curEC->date.s1 << " " << curEC->date.s2 << endl;
+		curEC = curEC->courseNext;
+	}
     system("cls");
     cout<<"Course Removed!";
+
 }
