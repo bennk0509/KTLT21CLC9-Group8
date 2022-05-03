@@ -81,7 +81,7 @@ void removeEnrolledCourse(Course *&ELhead, string ID, Semester* pSemester, Stude
         cur->courseNext=temp->courseNext;
         delete temp;
     }
-	string dirO = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\" + curStudent->classname + "\\" + curStudent->ID + ".txt";
+	string dirO = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\" + curStudent->classname + "\\" + curStudent->ID + "_" + pSemester->semesterName + ".txt";
 	fstream fout;
 	fout.open(dirO.c_str(), ios::out);
 	Course * curEC = curStudent->EnrolledCourses;

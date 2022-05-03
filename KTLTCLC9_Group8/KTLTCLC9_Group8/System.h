@@ -9,5 +9,6 @@ bool logStudent(string account, Year* pYear, Student*& curStudent, Year*& curren
 void loadData(Year*& pYear, ifstream& yearin);
 void ChangePassword(int role);
 void courseDate(int& d1, int& d2, int& s1, int& s2, Course* &curCourse);
+void loadCourse(Semester* pSemester, Student*& curStudent, Year* curYear);
 #endif // !_SYSTEM_H_
 

@@ -346,6 +346,7 @@ int main()
 					{
 					case 1:
 						changeSemester(curYear, curSemester, semesterName, semestercheck);
+						loadCourse(curSemester, curStudent, curYear);
 						break;
 					case 2:
 						system("cls");

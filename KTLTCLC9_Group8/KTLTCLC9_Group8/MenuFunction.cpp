@@ -315,7 +315,7 @@ void loadData(Year*& pYear, ifstream &yearin)
 					curCourse = curCourse->courseNext;
 					curCourse-> courseNext = nullptr;
 				}
-				string cstudir = "";
+				string cstudir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\Data\\YearName\\" + curYear->YearName + "\\Semester\\" + curSemester->semesterName + "\\" + curCourse->id + "\\Student.txt";
 				ifstream cstuin(cstudir);
 				string cstudent;
 				Student* StInCourse;
@@ -545,4 +545,50 @@ void courseDate(int& d1, int& d2, int& s1, int& s2, Course* &curCourse)
 	else if (curCourse->date.s2.compare("9:30") == 0) s2 = 1;
 	else if (curCourse->date.s2.compare("13:30") == 0) s2 = 2;
 	else if (curCourse->date.s2.compare("15:30") == 0) s2 = 3;
+}
+
+void loadCourse(Semester* pSemester, Student* &curStudent, Year* curYear)
+{
+	string ecdir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + curYear->YearName + "\\" + curStudent->classname + "\\" + curStudent->ID + "_" + pSemester->semesterName + ".txt";
+	ifstream ecin(ecdir);
+	curStudent->EnrolledCourses = nullptr;
+	if (!ecin)
+	{
+		for (int i = 0; i < 4; i++)
+			for (int j = 0; j < 7; j++)
+				curStudent->coursesenrolled[i][j] = 0;
+	}
+	if (ecin)
+	{
+		for (int i = 0; i < 4; i++)
+			for (int j = 0; j < 7; j++)
+				ecin >> curStudent->coursesenrolled[i][j];
+	}
+	while (!ecin.eof() && ecin)
+	{
+		Course* ECourse = new Course;
+		ecin >> ECourse->id;
+		ecin.ignore(1000, '\n');
+		getline(ecin, ECourse->name);
+		getline(ecin, ECourse->lecturerName);
+		ecin >> ECourse->sSemester;
+		ecin >> ECourse->numberOfCredits;
+		ecin >> ECourse->maxStudent;
+		ecin >> ECourse->curStudentNum;
+		ecin >> ECourse->date.d1 >> ECourse->date.d2 >> ECourse->date.s1 >> ECourse->date.s2;
+		Course* curECourse = curStudent->EnrolledCourses;
+		if (curStudent->EnrolledCourses == nullptr)
+		{
+			curStudent->EnrolledCourses = ECourse;
+			curECourse = curStudent->EnrolledCourses;
+		}
+
+		else
+		{
+			while (curECourse->courseNext != nullptr)
+				curECourse = curECourse->courseNext;
+			curECourse->courseNext = ECourse;
+			curECourse = curECourse->courseNext;
+		}
+	}
 }

@@ -14,7 +14,7 @@ void UpdateStudentResult(Scoreboard* &pScoreboard, string studentID)
         cout << "Final's mark: "; cin >> pCur->final;
         cout << "Bonus's mark: "; cin >> pCur->bonus;
         cout << "Total's mark: "; cin >> pCur->total;
-        cout << "Scoreboard of student " << studentID << "has updated" << endl;
+        cout << "Scoreboard of student " << studentID << " has updated" << endl;
     }
     else
         cout << "This student ID does not exist.\n";

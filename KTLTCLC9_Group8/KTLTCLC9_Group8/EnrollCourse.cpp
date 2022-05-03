@@ -178,7 +178,7 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 		stuCourse->DOB = curStudent->DOB;
 		stuCourse->studentNext = nullptr;
 	}
-	string dirO = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName +"\\" + curStudent->classname + "\\" + curStudent->ID + ".txt";
+	string dirO = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName +"\\" + curStudent->classname + "\\" + curStudent->ID + "_" + pSemester->semesterName + ".txt";
 	fstream fout;
 	fout.open(dirO.c_str(), ios::out);
 	curEC = curStudent->EnrolledCourses;
@@ -189,17 +189,47 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 	int c = 0;
 	while (curEC != nullptr)
 	{
-		if (c > 0)
-			fout << endl;
-		fout << curEC->id << endl;
-		fout << curEC->name << endl;
-		fout << curEC->lecturerName << endl;
-		fout << curEC->sSemester << endl;
-		fout << curEC->numberOfCredits << endl;
-		fout << curEC->maxStudent << endl;
-		fout << curEC->curStudentNum << endl;
-		fout << curEC->date.d1 << " " << curEC->date.d2 << " " << curEC->date.s1 << " " << curEC->date.s2;
-		c++;
-		curEC = curEC->courseNext;
+		if (curEC->sSemester.compare(pSemester->semesterName) == 0)
+		{
+			if (c > 0)
+				fout << endl;
+			fout << curEC->id << endl;
+			fout << curEC->name << endl;
+			fout << curEC->lecturerName << endl;
+			fout << curEC->sSemester << endl;
+			fout << curEC->numberOfCredits << endl;
+			fout << curEC->maxStudent << endl;
+			fout << curEC->curStudentNum << endl;
+			fout << curEC->date.d1 << " " << curEC->date.d2 << " " << curEC->date.s1 << " " << curEC->date.s2;
+			c++;
+			curEC = curEC->courseNext;
+		}
+	}
+
+	Student* pStu = pCourse->pStudent;
+	string adir = "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\KTLT21CLC9-Group8\\Data\\YearName\\" + yearName + "\\Semester\\" + pSemester->semesterName + "\\" + curCourse->id + "\\Student.txt";
+	fstream fout2;
+	fout2.open(adir.c_str(), ios::out);
+	if (!fout2)
+		cout << "asdasd";
+	int cnt = 0;
+	while (pStu != nullptr) {
+		fout2 << cnt++ << ",";
+		fout2 << pStu->ID << ",";
+		fout2 << pStu->name << ",";
+		fout2 << pStu->DOB.year << "-";
+		if (pStu->DOB.month < 10)
+			fout2 << "0" << pStu->DOB.month;
+		else
+			fout2 << pStu->DOB.month;
+		fout2 << "-";
+		if (pStu->DOB.day < 10)
+			fout2 << "0" << pStu->DOB.day;
+		else
+			fout2 << pStu->DOB.day;
+		fout2 << ",";
+		fout2 << pStu->classname << ",";
+		fout2 << pStu->gender << endl;
+		pStu = pStu->studentNext;
 	}
 }

@@ -14,6 +14,7 @@ struct Semester;
 struct Year;
 struct Course;
 struct Scoreboard;
+struct Calendar;
 
 struct dayPerformed 
 {
@@ -97,6 +98,13 @@ struct Account
 	string username;
 	string password;
 	Account *nextAcc=nullptr;
+};
+
+struct Calendar
+{
+	bool coursesenrolled[4][7] = {};
+	string sName;
+	Calendar* cNext;
 };
 
 #endif // _STRUCT_H 
