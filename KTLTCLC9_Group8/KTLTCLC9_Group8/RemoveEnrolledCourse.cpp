@@ -50,22 +50,25 @@ void removeEnrolledCourse(Course *&ELhead, string ID, Semester* pSemester, Stude
 	}
     if(ELhead==nullptr) return;
     Course *cur=ELhead;
-    if(ELhead->id==ID)
+    if(ELhead->id.compare(ID) == 0)
     {
-        ELhead=ELhead->courseNext;
 		int d1, d2, s1, s2;
-		courseDate(d1, d2, s1, s2,ELhead);
+		courseDate(d1, d2, s1, s2, ELhead);
 		curStudent->coursesenrolled[s1][d1] = false;
 		curStudent->coursesenrolled[s2][d2] = false;
+        ELhead=ELhead->courseNext;
         delete cur;
     }
     else
     {
-        while(cur->courseNext!=nullptr && cur->courseNext->id!=ID)
+		cur = ELhead;
+        while(cur->courseNext !=nullptr)
         {
+			if (cur->courseNext->id.compare(ID) == 0)
+				break;
             cur=cur->courseNext;
         }
-        if(cur->courseNext==nullptr)
+        if(cur->courseNext == nullptr)
         {
             cout<<"Course not found!";
             return;
@@ -86,8 +89,11 @@ void removeEnrolledCourse(Course *&ELhead, string ID, Semester* pSemester, Stude
 		for (int j = 0; j < 7; j++)
 			fout << curStudent->coursesenrolled[i][j] << " ";
 	fout << "\n";
+	int c = 0;
 	while (curEC != nullptr)
 	{
+		if (c > 0)
+			fout << endl;
 		fout << curEC->id << endl;
 		fout << curEC->name << endl;
 		fout << curEC->lecturerName << endl;
@@ -95,7 +101,8 @@ void removeEnrolledCourse(Course *&ELhead, string ID, Semester* pSemester, Stude
 		fout << curEC->numberOfCredits << endl;
 		fout << curEC->maxStudent << endl;
 		fout << curEC->curStudentNum << endl;
-		fout << curEC->date.d1 << " " << curEC->date.d2 << " " << curEC->date.s1 << " " << curEC->date.s2 << endl;
+		fout << curEC->date.d1 << " " << curEC->date.d2 << " " << curEC->date.s1 << " " << curEC->date.s2;
+		c++;
 		curEC = curEC->courseNext;
 	}
     system("cls");

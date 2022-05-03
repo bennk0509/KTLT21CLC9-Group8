@@ -186,8 +186,11 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 		for (int j = 0; j < 7; j++)
 			fout << curStudent->coursesenrolled[i][j] << " ";
 	fout << "\n";
+	int c = 0;
 	while (curEC != nullptr)
 	{
+		if (c > 0)
+			fout << endl;
 		fout << curEC->id << endl;
 		fout << curEC->name << endl;
 		fout << curEC->lecturerName << endl;
@@ -195,7 +198,8 @@ void EnrollCourse(Course* &pCourse, Student* &curStudent, string CourseID, strin
 		fout << curEC->numberOfCredits << endl;
 		fout << curEC->maxStudent << endl;
 		fout << curEC->curStudentNum << endl;
-		fout << curEC->date.d1 << " " << curEC->date.d2 << " " << curEC->date.s1 << " " << curEC->date.s2 << endl;
+		fout << curEC->date.d1 << " " << curEC->date.d2 << " " << curEC->date.s1 << " " << curEC->date.s2;
+		c++;
 		curEC = curEC->courseNext;
 	}
 }
